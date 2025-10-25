@@ -1,38 +1,98 @@
-"use client"
+"use client";
 
-import { X, Minus, Plus, Trash2 } from "lucide-react"
-import type { Product, Client, CartItem } from "@/types"
+import { X, Minus, Plus, Trash2 } from "lucide-react";
+import type { Product, Client, CartItem } from "@/types";
+import { sendWhatsApp } from "@/lib/sendWhatsApp";
 
 interface CartDrawerProps {
-  isOpen: boolean
-  onClose: () => void
-  cart: CartItem[]
-  products: Product[]
-  client: Client
-  onUpdateQuantity: (productId: number, quantity: number) => void
+  isOpen: boolean;
+  onClose: () => void;
+  cart: CartItem[];
+  products: Product[];
+  client: Client;
+  onUpdateQuantity: (productId: number, quantity: number) => void;
 }
 
-export default function CartDrawer({ isOpen, onClose, cart, products, client, onUpdateQuantity }: CartDrawerProps) {
+export default function CartDrawer({
+  isOpen,
+  onClose,
+  cart,
+  products,
+  client,
+  onUpdateQuantity,
+}: CartDrawerProps) {
+  // Prueba
+  const handleWhatsApp = () => {
+    if (cart.length === 0) {
+      alert("Agrega productos a tu pedido primero 😊");
+      return;
+    }
+
+    const cartItems = cart.map((item) => {
+      const product = products.find((p) => p.id === item.productId)!;
+      const precioBase = product.precios[client.tipo];
+      const precio = Math.round(precioBase * (1 - client.descuento / 100));
+      return {
+        nombre: product.nombre,
+        cantidad: item.quantity,
+        precio,
+        subtotal: precio * item.quantity,
+      };
+    });
+
+    const total = cartItems.reduce((sum, item) => sum + item.subtotal, 0);
+
+    const mensaje = cartItems
+      .map(
+        (item) =>
+          `• ${item.nombre} x${item.cantidad} ($${item.precio} c/u) = $${item.subtotal}`
+      )
+      .join("%0A");
+
+    const clientInfo =
+      client.descuento > 0
+        ? `${client.nombre} (${client.descuento}% descuento)`
+        : client.nombre;
+
+    const texto = `¡Hola! Quiero hacer el siguiente pedido:%0A%0A${mensaje}%0A%0A*Total: $${total}*%0A%0ACliente: ${clientInfo}`;
+
+    if (client.nombre === "Diego-ModaShop") {
+      const telefono = "5491165652001";
+      const url = `https://wa.me/${telefono}?text=${texto}`;
+      window.open(url, "_blank");
+    } else {
+      const telefono = "5491140381507";
+      const url = `https://wa.me/${telefono}?text=${texto}`;
+      window.open(url, "_blank");
+    }
+  };
+
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  // Termina la prueba
+
   const cartItems = cart.map((item) => {
-    const product = products.find((p) => p.id === item.productId)!
-    const precioBase = product.precios[client.tipo]
-    const precio = Math.round(precioBase * (1 - client.descuento / 100))
+    const product = products.find((p) => p.id === item.productId)!;
+    const precioBase = product.precios[client.tipo];
+    const precio = Math.round(precioBase * (1 - client.descuento / 100));
     return {
       ...item,
       product,
       precio,
       subtotal: precio * item.quantity,
-    }
-  })
+    };
+  });
 
-  const total = cartItems.reduce((sum, item) => sum + item.subtotal, 0)
+  const total = cartItems.reduce((sum, item) => sum + item.subtotal, 0);
 
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
   return (
     <>
       {/* Backdrop */}
-      <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm" onClick={onClose} />
+      <div
+        className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
+        onClick={onClose}
+      />
 
       {/* Drawer */}
       <div className="fixed right-0 top-0 z-50 h-full w-full max-w-md border-l border-border bg-background shadow-2xl">
@@ -55,31 +115,48 @@ export default function CartDrawer({ isOpen, onClose, cart, products, client, on
                 <div className="mb-4 rounded-full bg-muted p-6">
                   <Trash2 className="h-12 w-12 text-muted-foreground" />
                 </div>
-                <p className="text-lg font-medium text-foreground">Tu carrito está vacío</p>
-                <p className="mt-2 text-sm text-muted-foreground">Agrega productos para comenzar tu pedido</p>
+                <p className="text-lg font-medium text-foreground">
+                  Tu carrito está vacío
+                </p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Agrega productos para comenzar tu pedido
+                </p>
               </div>
             ) : (
               <div className="space-y-4">
                 {cartItems.map((item) => (
-                  <div key={item.productId} className="flex gap-4 rounded-xl border border-border bg-card p-4">
+                  <div
+                    key={item.productId}
+                    className="flex gap-4 rounded-xl border border-border bg-card p-4"
+                  >
                     <img
                       src={item.product.imagen1 || "/placeholder.svg"}
                       alt={item.product.nombre}
                       className="h-20 w-20 rounded-lg object-cover"
                     />
                     <div className="flex-1">
-                      <h3 className="font-semibold text-card-foreground">{item.product.nombre}</h3>
-                      <p className="text-sm text-muted-foreground">${item.precio} c/u</p>
+                      <h3 className="font-semibold text-card-foreground">
+                        {item.product.nombre}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        ${item.precio} c/u
+                      </p>
                       <div className="mt-2 flex items-center gap-2">
                         <button
-                          onClick={() => onUpdateQuantity(item.productId, item.quantity - 1)}
+                          onClick={() =>
+                            onUpdateQuantity(item.productId, item.quantity - 1)
+                          }
                           className="rounded-md border border-border bg-background p-1 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
                         >
                           <Minus className="h-3 w-3" />
                         </button>
-                        <span className="w-8 text-center text-sm font-medium">{item.quantity}</span>
+                        <span className="w-8 text-center text-sm font-medium">
+                          {item.quantity}
+                        </span>
                         <button
-                          onClick={() => onUpdateQuantity(item.productId, item.quantity + 1)}
+                          onClick={() =>
+                            onUpdateQuantity(item.productId, item.quantity + 1)
+                          }
                           className="rounded-md border border-border bg-background p-1 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
                         >
                           <Plus className="h-3 w-3" />
@@ -93,7 +170,9 @@ export default function CartDrawer({ isOpen, onClose, cart, products, client, on
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="font-bold text-foreground">${item.subtotal}</p>
+                      <p className="font-bold text-foreground">
+                        ${item.subtotal}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -105,10 +184,22 @@ export default function CartDrawer({ isOpen, onClose, cart, products, client, on
           {cartItems.length > 0 && (
             <div className="border-t border-border bg-muted/50 p-6">
               <div className="mb-4 flex items-center justify-between">
-                <span className="text-lg font-semibold text-foreground">Total</span>
-                <span className="text-2xl font-bold text-primary">${total}</span>
+                <span className="text-lg font-semibold text-foreground">
+                  Total
+                </span>
+                <span className="text-2xl font-bold text-primary">
+                  ${total}
+                </span>
               </div>
-              <p className="mb-4 text-center text-xs text-muted-foreground">
+              <div className="flex items-center justify-around">
+                <button
+                  onClick={() => sendWhatsApp(cart, products, client)}
+                  className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded text-aling:center  "
+                >
+                  Enviar pedido
+                </button>
+              </div>
+              <p className="mb-2 mt-4 text-center text-xs text-muted-foreground">
                 Precios para {client.nombre}
                 {client.descuento > 0 && ` (${client.descuento}% descuento)`}
               </p>
@@ -117,5 +208,5 @@ export default function CartDrawer({ isOpen, onClose, cart, products, client, on
         </div>
       </div>
     </>
-  )
+  );
 }
