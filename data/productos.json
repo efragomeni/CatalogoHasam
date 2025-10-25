@@ -1,0 +1,574 @@
+[
+  {
+    "id": 1,
+    "nombre": "Capuchino Assesino",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Capuchino_1.jpg",
+    "imagen2": "brainrot/Capuchino_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 7142.86,
+      "distribuidor": 4500
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 2,
+    "nombre": "Chimpannzini Bananini",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Chimpannzini_1.jpg",
+    "imagen2": "brainrot/Chimpannzini_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 7571.43,
+      "distribuidor": 5000
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 3,
+    "nombre": "La Vaca Saturno Saturnita",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Vaca_1.jpg",
+    "imagen2": "brainrot/Vaca_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 7857.14,
+      "distribuidor": 5500
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 4,
+    "nombre": "La gran combinación",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Gran_combinacion_1.jpg",
+    "imagen2": "brainrot/Gran_combinacion_2.jpg",
+    "precios": {
+      "minorista": 8000,
+      "mayorista": 10714.29,
+      "distribuidor": 7300
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 5,
+    "nombre": "Tung tung tung Musculoso",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Musculoso_1.jpg",
+    "imagen2": "brainrot/Musculoso_2.jpg",
+    "precios": {
+      "minorista": 8000,
+      "mayorista": 10714.29,
+      "distribuidor": 7300
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 6,
+    "nombre": "Frulli Frulla",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Frulli_Frulla_1.jpg",
+    "imagen2": "brainrot/Frulli_Frulla_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 6071.43,
+      "distribuidor": 4250
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 7,
+    "nombre": "Blueberrini Octopussini",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Blueberrini_1.jpg",
+    "imagen2": "brainrot/Blueberrini_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 6428.57,
+      "distribuidor": 4500
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 8,
+    "nombre": "Mateo",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Mateo_1.jpg",
+    "imagen2": "brainrot/Mateo_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 7142.86,
+      "distribuidor": 5000
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 9,
+    "nombre": "Ballerina capuchina",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Bailarina_1.jpg",
+    "imagen2": "brainrot/Bailarina_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 6785.71,
+      "distribuidor": 4300
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 10,
+    "nombre": "Borrito Bandito",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Castor_1.jpg",
+    "imagen2": "brainrot/Castor_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 6785.71,
+      "distribuidor": 4000
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 11,
+    "nombre": "Trulimero Trulichina",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Trulimero_1.jpg",
+    "imagen2": "brainrot/Trulimero_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 7142.86,
+      "distribuidor": 4700
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 12,
+    "nombre": "Udin din din dun",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Naranja_1.jpg",
+    "imagen2": "brainrot/Naranja_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 6428.57,
+      "distribuidor": 4750
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 13,
+    "nombre": "Brr brr patapim",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Gigante_1.jpg",
+    "imagen2": "brainrot/Gigante_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 7857.14,
+      "distribuidor": 5000
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 14,
+    "nombre": "Gorillo Watermelondrillo",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Gorila_1.jpg",
+    "imagen2": "brainrot/Gorila_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 6428.57,
+      "distribuidor": 4800
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 15,
+    "nombre": "Tatata Sahur",
+    "descripcion": "-",
+    "imagen1": "brainrot/Tetera_1.jpg",
+    "imagen2": "brainrot/Tetera_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 6142.86,
+      "distribuidor": 4400
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 16,
+    "nombre": "Tralalero Tralala",
+    "descripcion": "-",
+    "imagen1": "brainrot/Tiburon_1.jpg",
+    "imagen2": "brainrot/Tiburon_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 5714.29,
+      "distribuidor": 4000
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 17,
+    "nombre": "Burbaloni Luliloli",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Carpincho_1.jpg",
+    "imagen2": "brainrot/Carpincho_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 6285.71,
+      "distribuidor": 4500
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 18,
+    "nombre": "Cocofanto Elefanto",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Coco_Fanto_1.jpg",
+    "imagen2": "brainrot/Coco_Fanto_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 7500,
+      "distribuidor": 4700
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 19,
+    "nombre": "Cacto Hippopotamo",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Hipopotamo_1.jpg",
+    "imagen2": "brainrot/Hipopotamo_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 7142.86,
+      "distribuidor": 4500
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 20,
+    "nombre": "Lirili larila",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Liri_lari_1.jpg",
+    "imagen2": "brainrot/Liri_lari_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 6428.57,
+      "distribuidor": 4100
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 21,
+    "nombre": "Bombombini Gusini",
+    "descripcion": "-",
+    "imagen1": "brainrot/Pato_1.jpg",
+    "imagen2": "brainrot/Pato_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 6142.86,
+      "distribuidor": 4000
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 22,
+    "nombre": "Bombardino Crocodilo",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Cocodrilo_1.jpg",
+    "imagen2": "brainrot/Cocodrilo_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 6785.71,
+      "distribuidor": 3700
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 23,
+    "nombre": "Nuclearo Dinosaurio",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Dino_1.jpg",
+    "imagen2": "brainrot/Dino_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 7857.14,
+      "distribuidor": 5000
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 24,
+    "nombre": "Orcalero Orcala",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Orca_1.jpg",
+    "imagen2": "brainrot/Orca_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 6428.57,
+      "distribuidor": 4500
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 25,
+    "nombre": "Glorbo fruttodrillo",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Fruto_dilo_1.jpg",
+    "imagen2": "brainrot/Fruto_dilo_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 6428.57,
+      "distribuidor": 4500
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 26,
+    "nombre": "Espressona Signora",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Capuchina_1.jpg",
+    "imagen2": "brainrot/Capuchina_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 7142.86,
+      "distribuidor": 5000
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 27,
+    "nombre": "Tripi tropi tropa tripa",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Tripi_1.jpg",
+    "imagen2": "brainrot/Tripi_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 7142.85,
+      "distribuidor": 4750
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 28,
+    "nombre": "Agarrini Lapalini",
+    "descripcion": "-",
+    "imagen1": "brainrot/Pala_1.jpg",
+    "imagen2": "brainrot/Pala_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 5000,
+      "distribuidor": 3500
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 29,
+    "nombre": "Sbrocco Se Tocco",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Bomba_1.jpg",
+    "imagen2": "brainrot/Bomba_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 7142.85,
+      "distribuidor": 5000
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 30,
+    "nombre": "Tric Trac Baraboom",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Calabazin_1.jpg",
+    "imagen2": "brainrot/Calabazin_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 7857.14,
+      "distribuidor": 5000
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 31,
+    "nombre": "Trippi Troppi",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Gato_2_1.jpg",
+    "imagen2": "brainrot/Gato_2_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 6071.43,
+      "distribuidor": 4750
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 32,
+    "nombre": "Chache Chicha Chacha Chi",
+    "descripcion": "-",
+    "imagen1": "brainrot/Mesa_1.jpg",
+    "imagen2": "brainrot/Mesa_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 5714.29,
+      "distribuidor": 4250
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 33,
+    "nombre": "Boneca Ambalabu",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Boneca_1.jpg",
+    "imagen2": "brainrot/Boneca_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 6428.57,
+      "distribuidor": 3500
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 34,
+    "nombre": "Frigo Camelo",
+    "descripcion": "-",
+    "imagen1": "brainrot/Camello_1.jpg",
+    "imagen2": "brainrot/Camello_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 6428.57,
+      "distribuidor": 4500
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 35,
+    "nombre": "Tung Tung Sahur Halloween",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Palo_Halloween_1.jpg",
+    "imagen2": "brainrot/Palo_Halloween_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 6428.57,
+      "distribuidor": 4000
+    },
+    "categoria": "Brain rots Halloween"
+  },
+  {
+    "id": 36,
+    "nombre": "Tralalero Tralala Halloween",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Tiburon_Halloween_1.jpg",
+    "imagen2": "brainrot/Tiburon_Halloween_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 6428.57,
+      "distribuidor": 4000
+    },
+    "categoria": "Brain rots Halloween"
+  },
+  {
+    "id": 37,
+    "nombre": "Tung Tung",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Palo_1.jpg",
+    "imagen2": "brainrot/Palo_2.jpg",
+    "precios": {
+      "minorista": 6000,
+      "mayorista": 6071.43,
+      "distribuidor": 4000
+    },
+    "categoria": "Brain rots"
+  },
+  {
+    "id": 38,
+    "nombre": "Vaca Saturnita",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Vaquita_1.jpg",
+    "imagen2": "brainrot/Vaquita_2.jpg",
+    "precios": {
+      "minorista": 2500,
+      "mayorista": 2428.57,
+      "distribuidor": 1700
+    },
+    "categoria": "Brain rots Llaveros"
+  },
+  {
+    "id": 39,
+    "nombre": "Tralalerito",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Tiburon_mini_1.jpg",
+    "imagen2": "brainrot/Tiburon_mini_2.jpg",
+    "precios": {
+      "minorista": 2500,
+      "mayorista": 2428.57,
+      "distribuidor": 1700
+    },
+    "categoria": "Brain rots Llaveros"
+  },
+  {
+    "id": 40,
+    "nombre": "Bombardino Crocodilo Baby",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Coco_baby_1.jpg",
+    "imagen2": "brainrot/Coco_baby_2.jpg",
+    "precios": {
+      "minorista": 2500,
+      "mayorista": 2428.57,
+      "distribuidor": 1700
+    },
+    "categoria": "Brain rots Llaveros"
+  },
+  {
+    "id": 41,
+    "nombre": "Tatata Sahur Baby",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Tetera_mini_1.jpg",
+    "imagen2": "brainrot/Tetera_mini_2.jpg",
+    "precios": {
+      "minorista": 2500,
+      "mayorista": 2428.57,
+      "distribuidor": 1700
+    },
+    "categoria": "Brain rots Llaveros"
+  },
+  {
+    "id": 42,
+    "nombre": "Orcaleritos",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Orquita_1.jpg",
+    "imagen2": "brainrot/Orquita_2.jpg",
+    "precios": {
+      "minorista": 2500,
+      "mayorista": 2428.57,
+      "distribuidor": 1700
+    },
+    "categoria": "Brain rots Llaveros"
+  },
+  {
+    "id": 43,
+    "nombre": "Capuchino Assesino Baby",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Capuchino_baby_1.jpg",
+    "imagen2": "brainrot/Capuchino_baby_2.jpg",
+    "precios": {
+      "minorista": 2500,
+      "mayorista": 2428.57,
+      "distribuidor": 1700
+    },
+    "categoria": "Brain rots Llaveros"
+  },
+  {
+    "id": 44,
+    "nombre": "Tung tung tung Baby",
+    "descripcion": "Articulado",
+    "imagen1": "brainrot/Palo_baby_1.jpg",
+    "imagen2": "brainrot/Palo_baby_2.jpg",
+    "precios": {
+      "minorista": 2500,
+      "mayorista": 2428.57,
+      "distribuidor": 1700
+    },
+    "categoria": "Brain rots Llaveros"
+  }
+]

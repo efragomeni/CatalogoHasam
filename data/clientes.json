@@ -1,0 +1,38 @@
+[
+  {
+    "id": "minorista",
+    "nombre": "minorista",
+    "tipo": "minorista",
+    "descuento": 0
+  },
+  {
+    "id": "Eri-Indalecio",
+    "nombre": "Erika Fragomeni",
+    "tipo": "mayorista",
+    "descuento": 20
+  },
+  {
+    "id": "maria-gomez",
+    "nombre": "María Gómez",
+    "tipo": "mayorista",
+    "descuento": 25
+  },
+  {
+    "id": "comercial-sur",
+    "nombre": "Comercial Sur",
+    "tipo": "mayorista",
+    "descuento": 18
+  },
+  {
+    "id": "Matias-ShoppingDevoto",
+    "nombre": "Matias-ShoppingDevoto",
+    "tipo": "mayorista",
+    "descuento": 30
+  },
+  {
+    "id": "Diego-ModaShop",
+    "nombre": "Diego-ModaShop",
+    "tipo": "distribuidor",
+    "descuento": 0
+  }
+]
