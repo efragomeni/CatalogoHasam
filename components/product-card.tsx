@@ -81,7 +81,8 @@ export default function ProductCard({ product, client, onAddToCart }: ProductCar
               onClick={handleAddToCart}
               className="rounded-lg bg-primary p-2 text-primary-foreground transition-all hover:bg-primary/90 hover:shadow-md active:scale-95"
             >
-              <Plus className="h-5 w-5" />
+              <p>Agregar</p>
+              {/* <Plus className="h-5 w-5" /> */}
             </button>
           </div>
         </div>
