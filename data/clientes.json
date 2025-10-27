@@ -18,9 +18,9 @@
     "descuento": 25
   },
   {
-    "id": "comercial-sur",
-    "nombre": "Comercial Sur",
-    "tipo": "mayorista",
+    "id": "Mayorista",
+    "nombre": "Mayorista-Mayorista",
+    "tipo": "distribuidor",
     "descuento": 18
   },
   {
