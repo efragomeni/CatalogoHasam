@@ -18,8 +18,8 @@
     "descuento": 25
   },
   {
-    "id": "Mayorista",
-    "nombre": "Mayorista-Mayorista",
+    "id": "Mayorista-Mayorista",
+    "nombre": "Mayorista",
     "tipo": "distribuidor",
     "descuento": 18
   },
