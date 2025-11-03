@@ -570,5 +570,18 @@
       "distribuidor": 1700
     },
     "categoria": "Brain rots Llaveros"
+  },
+   {
+    "id": 45,
+    "nombre": "Pack conos x 3 ceramica",
+    "descripcion": "Juego de conos para bordes perfectos.",
+    "imagen1": "ceramica/Conos_2.jpg",
+    "imagen2": "ceramica/Conos_3.jpg",
+    "precios": {
+      "minorista": 8500,
+      "mayorista": 7500,
+      "distribuidor": 7500
+    },
+    "categoria": "Ceramica - Accesorios"
   }
 ]
