@@ -33,12 +33,7 @@ export function sendWhatsApp(
     )
     .join("%0A");
 
-  const clientInfo =
-    client.descuento > 0
-      ? `${client.nombre} (${client.descuento}% descuento)`
-      : client.nombre;
-
-  const texto = `¡Hola! Quiero hacer el siguiente pedido:%0A%0A${mensaje}%0A%0A*Total: $${total}*%0A%0ACantidad de productos: ${cantidadTotal} %0A%0ACliente: ${clientInfo}`;
+  const texto = `¡Hola! Quiero hacer el siguiente pedido:%0A%0A${mensaje}%0A%0A*Total: $${total}*%0A%0ACantidad de productos: ${cantidadTotal} %0A%0ACliente: ${client.nombre}`;
 
   const telefono =
     client.nombre === "Diego-ModaShop" ? "5491165652001" : "5491140381507";
