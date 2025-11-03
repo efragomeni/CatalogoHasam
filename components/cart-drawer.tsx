@@ -3,6 +3,7 @@
 import { X, Minus, Plus, Trash2 } from "lucide-react";
 import type { Product, Client, CartItem } from "@/types";
 import { sendWhatsApp } from "@/lib/sendWhatsApp";
+import { sign } from "crypto";
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -41,7 +42,11 @@ export default function CartDrawer({
     });
 
     const total = cartItems.reduce((sum, item) => sum + item.subtotal, 0);
-
+    const totalCantidad = cartItems.reduce(
+      (sum, item) => sum + item.cantidad,
+      0
+    );
+    console.log(totalCantidad);
     const mensaje = cartItems
       .map(
         (item) =>
@@ -50,9 +55,7 @@ export default function CartDrawer({
       .join("%0A");
 
     const clientInfo =
-      client.descuento > 0
-        ? `${client.nombre} (${client.descuento}% descuento)`
-        : client.nombre;
+      client.descuento > 0 ? `${client.nombre}` : client.nombre;
 
     const texto = `¡Hola! Quiero hacer el siguiente pedido:%0A%0A${mensaje}%0A%0A*Total: $${total}*%0A%0ACliente: ${clientInfo}`;
 
@@ -83,6 +86,7 @@ export default function CartDrawer({
   });
 
   const total = cartItems.reduce((sum, item) => sum + item.subtotal, 0);
+  const cantidadTotal = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   if (!isOpen) return null;
 
@@ -189,6 +193,14 @@ export default function CartDrawer({
                 </span>
                 <span className="text-2xl font-bold text-primary">
                   ${total}
+                </span>
+              </div>
+              <div className="mb-4 flex items-center justify-between">
+                <span className="text-lg font-semibold text-foreground">
+                  Cantidad total
+                </span>
+                <span className="text-2xl font-bold text-primary">
+                  {cantidadTotal}
                 </span>
               </div>
               <div className="flex items-center justify-around">

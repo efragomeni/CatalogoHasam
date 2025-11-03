@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   generator: "",
   keywords: [
     "Hasam",
+    "Hasam3D",
     "impresiones 3D",
     "impresora 3D",
     "brainrot",

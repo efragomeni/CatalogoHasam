@@ -6,6 +6,7 @@ export const metadata = {
     "Catálogo Hasam 3D: productos únicos impresos en 3D, diseños personalizados y accesorios coloridos para vos y tus mascotas 🐾",
   keywords: [
     "Hasam",
+    "Hasam3D",
     "impresión 3D",
     "impresion 3D",
     "impresion3D",

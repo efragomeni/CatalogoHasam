@@ -1,7 +1,11 @@
 // utils/sendWhatsApp.ts
 import type { Product, Client, CartItem } from "@/types";
 
-export function sendWhatsApp(cart: CartItem[], products: Product[], client: Client) {
+export function sendWhatsApp(
+  cart: CartItem[],
+  products: Product[],
+  client: Client
+) {
   if (cart.length === 0) {
     alert("Agrega productos a tu pedido primero 😊");
     return;
@@ -20,6 +24,7 @@ export function sendWhatsApp(cart: CartItem[], products: Product[], client: Clie
   });
 
   const total = cartItems.reduce((sum, item) => sum + item.subtotal, 0);
+  const cantidadTotal = cartItems.reduce((sum, item) => sum + item.cantidad, 0);
 
   const mensaje = cartItems
     .map(
@@ -33,12 +38,10 @@ export function sendWhatsApp(cart: CartItem[], products: Product[], client: Clie
       ? `${client.nombre} (${client.descuento}% descuento)`
       : client.nombre;
 
-  const texto = `¡Hola! Quiero hacer el siguiente pedido:%0A%0A${mensaje}%0A%0A*Total: $${total}*%0A%0ACliente: ${clientInfo}`;
+  const texto = `¡Hola! Quiero hacer el siguiente pedido:%0A%0A${mensaje}%0A%0A*Total: $${total}*%0A%0ACantidad de productos: ${cantidadTotal} %0A%0ACliente: ${clientInfo}`;
 
   const telefono =
-    client.nombre === "Diego-ModaShop"
-      ? "5491165652001"
-      : "5491140381507";
+    client.nombre === "Diego-ModaShop" ? "5491165652001" : "5491140381507";
 
   const url = `https://wa.me/${telefono}?text=${texto}`;
   window.open(url, "_blank");
