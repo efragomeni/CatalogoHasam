@@ -213,7 +213,7 @@ export default function CartDrawer({
               </div>
               <p className="mb-2 mt-4 text-center text-xs text-muted-foreground">
                 Precios para {client.nombre}
-                {client.descuento > 0 && ` (${client.descuento}% descuento)`}
+              
               </p>
             </div>
           )}
