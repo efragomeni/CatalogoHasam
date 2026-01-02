@@ -1,0 +1,79 @@
+[
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "nombre",
+        "type": "string"
+      },
+      {
+        "name": "descripcion",
+        "type": "string",
+        "title": "Descripción"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "categoria",
+        "type": "string",
+        "title": "Categoría"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "imagen1",
+        "type": "image",
+        "title": "Imagen principal"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "imagen2",
+        "type": "image",
+        "title": "Imagen secundaria"
+      },
+      {
+        "fields": [
+          {
+            "name": "minorista",
+            "type": "number"
+          },
+          {
+            "name": "mayorista",
+            "type": "number"
+          },
+          {
+            "name": "distribuidor",
+            "type": "number"
+          }
+        ],
+        "name": "precios",
+        "type": "object"
+      }
+    ],
+    "name": "product",
+    "type": "document",
+    "title": "Producto"
+  }
+]

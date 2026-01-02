@@ -4,6 +4,7 @@ import { X, Minus, Plus, Trash2 } from "lucide-react";
 import type { Product, Client, CartItem } from "@/types";
 import { sendWhatsApp } from "@/lib/sendWhatsApp";
 import { sign } from "crypto";
+import { urlFor } from "@/sanity/lib/image";
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -133,11 +134,24 @@ export default function CartDrawer({
                     key={item.productId}
                     className="flex gap-4 rounded-xl border border-border bg-card p-4"
                   >
-                    <img
+                    {/* <img
                       src={item.product.imagen1 || "/placeholder.svg"}
                       alt={item.product.nombre}
                       className="h-20 w-20 rounded-lg object-cover"
+                    /> */}
+                    <img
+                      src={
+                        item.product.imagen1
+                          ? urlFor(item.product.imagen1)
+                              .width(160)
+                              .height(160)
+                              .url()
+                          : "/placeholder.svg"
+                      }
+                      alt={item.product.nombre}
+                      className="h-20 w-20 rounded-lg object-cover"
                     />
+
                     <div className="flex-1">
                       <h3 className="font-semibold text-card-foreground">
                         {item.product.nombre}
@@ -213,7 +227,6 @@ export default function CartDrawer({
               </div>
               <p className="mb-2 mt-4 text-center text-xs text-muted-foreground">
                 Precios para {client.nombre}
-              
               </p>
             </div>
           )}

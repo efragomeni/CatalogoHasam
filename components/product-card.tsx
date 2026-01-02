@@ -4,6 +4,8 @@ import { useState } from "react"
 import { Plus } from "lucide-react"
 import type { Product, Client } from "@/types"
 
+import { urlFor } from "@/sanity/lib/image"
+
 interface ProductCardProps {
   product: Product
   client: Client
@@ -31,7 +33,11 @@ export default function ProductCard({ product, client, onAddToCart }: ProductCar
       {/* Image Container */}
       <div className="relative aspect-square overflow-hidden bg-muted">
         <img
-          src={isHovered ? product.imagen2 : product.imagen1}
+          // src={isHovered ? product.imagen2 : product.imagen1}
+          src={urlFor(isHovered && product.imagen2 ? product.imagen2 : product.imagen1)
+        .width(400)
+        .height(400)
+        .url()}
           alt={product.nombre}
           className="h-full w-full object-cover transition-all duration-500 group-hover:scale-105"
         />

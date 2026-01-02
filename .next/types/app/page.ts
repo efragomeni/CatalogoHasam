@@ -1,4 +1,4 @@
-// File: C:\Users\efrag\Porfolio\Catalogo_3D_2daGen - copia (2)\catalogo\app\page.tsx
+// File: C:\Users\efrag\OneDrive\Documentos\GitHub\CatalogoHasam\app\page.tsx
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
