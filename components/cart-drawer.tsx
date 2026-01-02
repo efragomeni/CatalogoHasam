@@ -226,7 +226,7 @@ export default function CartDrawer({
                 </button>
               </div>
               <p className="mb-2 mt-4 text-center text-xs text-muted-foreground">
-                Precios para {client.nombre}
+                Hasam 3D
               </p>
             </div>
           )}
