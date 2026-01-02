@@ -122,7 +122,7 @@
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: "Inter", system-ui, -apple-system, sans-serif;
     --default-mono-font-family: var(--font-mono);
-    --color-border: #262626;
+    --color-border: var(--border);
   }
 }
 @layer base {
@@ -640,6 +640,12 @@
   .field-sizing-content {
     field-sizing: content;
   }
+  .aspect-4\/5 {
+    aspect-ratio: 4/5;
+  }
+  .aspect-\[4\/5\] {
+    aspect-ratio: 4/5;
+  }
   .aspect-square {
     aspect-ratio: 1 / 1;
   }
@@ -1045,6 +1051,9 @@
   .auto-rows-min {
     grid-auto-rows: min-content;
   }
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .grid-cols-\[0_1fr\] {
     grid-template-columns: 0 1fr;
   }
@@ -1267,19 +1276,24 @@
     border-color: var(--color-blue-500);
   }
   .border-border {
-    border-color: #262626;
+    border-color: var(--border);
   }
   .border-border\/50 {
-    border-color: color-mix(in oklab, #262626 50%, transparent);
+    border-color: var(--border);
+    @supports (color: color-mix(in lab, red, red)) {
+      & {
+        border-color: color-mix(in oklab, var(--border) 50%, transparent);
+      }
+    }
   }
   .border-destructive {
-    border-color: #dc2626;
+    border-color: var(--destructive);
   }
   .border-input {
-    border-color: #262626;
+    border-color: var(--input);
   }
   .border-primary {
-    border-color: #3b82f6;
+    border-color: var(--primary);
   }
   .border-sidebar-border {
     border-color: var(--sidebar-border);
@@ -1300,16 +1314,26 @@
     background-color: #25D366;
   }
   .bg-accent {
-    background-color: #262626;
+    background-color: var(--accent);
   }
   .bg-background {
-    background-color: #0a0a0a;
+    background-color: var(--background);
   }
   .bg-background\/80 {
-    background-color: color-mix(in oklab, #0a0a0a 80%, transparent);
+    background-color: var(--background);
+    @supports (color: color-mix(in lab, red, red)) {
+      & {
+        background-color: color-mix(in oklab, var(--background) 80%, transparent);
+      }
+    }
   }
   .bg-background\/95 {
-    background-color: color-mix(in oklab, #0a0a0a 95%, transparent);
+    background-color: var(--background);
+    @supports (color: color-mix(in lab, red, red)) {
+      & {
+        background-color: color-mix(in oklab, var(--background) 95%, transparent);
+      }
+    }
   }
   .bg-black\/50 {
     background-color: color-mix(in srgb, #000 50%, transparent);
@@ -1320,40 +1344,55 @@
     }
   }
   .bg-border {
-    background-color: #262626;
+    background-color: var(--border);
   }
   .bg-card {
-    background-color: #171717;
+    background-color: var(--card);
   }
   .bg-destructive {
-    background-color: #dc2626;
+    background-color: var(--destructive);
   }
   .bg-foreground {
-    background-color: #fafafa;
+    background-color: var(--foreground);
   }
   .bg-input {
-    background-color: #262626;
+    background-color: var(--input);
   }
   .bg-muted {
-    background-color: #262626;
+    background-color: var(--muted);
   }
   .bg-muted\/50 {
-    background-color: color-mix(in oklab, #262626 50%, transparent);
+    background-color: var(--muted);
+    @supports (color: color-mix(in lab, red, red)) {
+      & {
+        background-color: color-mix(in oklab, var(--muted) 50%, transparent);
+      }
+    }
   }
   .bg-primary {
-    background-color: #3b82f6;
+    background-color: var(--primary);
   }
   .bg-primary-foreground {
-    background-color: #ffffff;
+    background-color: var(--primary-foreground);
   }
   .bg-primary\/5 {
-    background-color: color-mix(in oklab, #3b82f6 5%, transparent);
+    background-color: var(--primary);
+    @supports (color: color-mix(in lab, red, red)) {
+      & {
+        background-color: color-mix(in oklab, var(--primary) 5%, transparent);
+      }
+    }
   }
   .bg-primary\/20 {
-    background-color: color-mix(in oklab, #3b82f6 20%, transparent);
+    background-color: var(--primary);
+    @supports (color: color-mix(in lab, red, red)) {
+      & {
+        background-color: color-mix(in oklab, var(--primary) 20%, transparent);
+      }
+    }
   }
   .bg-secondary {
-    background-color: #262626;
+    background-color: var(--secondary);
   }
   .bg-sidebar {
     background-color: var(--sidebar);
@@ -1371,10 +1410,10 @@
     fill: currentcolor;
   }
   .fill-foreground {
-    fill: #fafafa;
+    fill: var(--foreground);
   }
   .fill-primary {
-    fill: #3b82f6;
+    fill: var(--primary);
   }
   .object-cover {
     object-fit: cover;
@@ -1607,43 +1646,48 @@
     color: #25D366;
   }
   .text-accent-foreground {
-    color: #fafafa;
+    color: var(--accent-foreground);
   }
   .text-background {
-    color: #0a0a0a;
+    color: var(--background);
   }
   .text-blue-700 {
     color: var(--color-blue-700);
   }
   .text-card-foreground {
-    color: #fafafa;
+    color: var(--card-foreground);
   }
   .text-current {
     color: currentcolor;
   }
   .text-destructive {
-    color: #dc2626;
+    color: var(--destructive);
   }
   .text-destructive-foreground {
-    color: #ffffff;
+    color: var(--destructive-foreground);
   }
   .text-foreground {
-    color: #fafafa;
+    color: var(--foreground);
   }
   .text-foreground\/50 {
-    color: color-mix(in oklab, #fafafa 50%, transparent);
+    color: var(--foreground);
+    @supports (color: color-mix(in lab, red, red)) {
+      & {
+        color: color-mix(in oklab, var(--foreground) 50%, transparent);
+      }
+    }
   }
   .text-muted-foreground {
-    color: #a1a1aa;
+    color: var(--muted-foreground);
   }
   .text-primary {
-    color: #3b82f6;
+    color: var(--primary);
   }
   .text-primary-foreground {
-    color: #ffffff;
+    color: var(--primary-foreground);
   }
   .text-secondary-foreground {
-    color: #fafafa;
+    color: var(--secondary-foreground);
   }
   .text-sidebar-foreground {
     color: var(--sidebar-foreground);
@@ -1752,13 +1796,18 @@
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
   .ring-ring\/50 {
-    --tw-ring-color: color-mix(in oklab, #3b82f6 50%, transparent);
+    --tw-ring-color: var(--ring);
+    @supports (color: color-mix(in lab, red, red)) {
+      & {
+        --tw-ring-color: color-mix(in oklab, var(--ring) 50%, transparent);
+      }
+    }
   }
   .ring-sidebar-ring {
     --tw-ring-color: var(--sidebar-ring);
   }
   .ring-offset-background {
-    --tw-ring-offset-color: #0a0a0a;
+    --tw-ring-offset-color: var(--background);
   }
   .outline-hidden {
     --tw-outline-style: none;
@@ -2088,7 +2137,7 @@
   }
   .group-data-\[focused\=true\]\/day\:border-ring {
     &:is(:where(.group\/day)[data-focused="true"] *) {
-      border-color: #3b82f6;
+      border-color: var(--ring);
     }
   }
   .group-data-\[focused\=true\]\/day\:ring-\[3px\] {
@@ -2099,7 +2148,12 @@
   }
   .group-data-\[focused\=true\]\/day\:ring-ring\/50 {
     &:is(:where(.group\/day)[data-focused="true"] *) {
-      --tw-ring-color: color-mix(in oklab, #3b82f6 50%, transparent);
+      --tw-ring-color: var(--ring);
+      @supports (color: color-mix(in lab, red, red)) {
+        & {
+          --tw-ring-color: color-mix(in oklab, var(--ring) 50%, transparent);
+        }
+      }
     }
   }
   .group-data-\[side\=left\]\:-right-4 {
@@ -2216,7 +2270,12 @@
   }
   .group-\[\.destructive\]\:border-muted\/40 {
     &:is(:where(.group):is(.destructive) *) {
-      border-color: color-mix(in oklab, #262626 40%, transparent);
+      border-color: var(--muted);
+      @supports (color: color-mix(in lab, red, red)) {
+        & {
+          border-color: color-mix(in oklab, var(--muted) 40%, transparent);
+        }
+      }
     }
   }
   .group-\[\.destructive\]\:text-red-300 {
@@ -2263,18 +2322,18 @@
   }
   .selection\:bg-primary {
     & *::selection {
-      background-color: #3b82f6;
+      background-color: var(--primary);
     }
     &::selection {
-      background-color: #3b82f6;
+      background-color: var(--primary);
     }
   }
   .selection\:text-primary-foreground {
     & *::selection {
-      color: #ffffff;
+      color: var(--primary-foreground);
     }
     &::selection {
-      color: #ffffff;
+      color: var(--primary-foreground);
     }
   }
   .file\:inline-flex {
@@ -2312,12 +2371,12 @@
   }
   .file\:text-foreground {
     &::file-selector-button {
-      color: #fafafa;
+      color: var(--foreground);
     }
   }
   .placeholder\:text-muted-foreground {
     &::placeholder {
-      color: #a1a1aa;
+      color: var(--muted-foreground);
     }
   }
   .after\:absolute {
@@ -2423,7 +2482,12 @@
   .hover\:border-primary\/50 {
     &:hover {
       @media (hover: hover) {
-        border-color: color-mix(in oklab, #3b82f6 50%, transparent);
+        border-color: var(--primary);
+        @supports (color: color-mix(in lab, red, red)) {
+          & {
+            border-color: color-mix(in oklab, var(--primary) 50%, transparent);
+          }
+        }
       }
     }
   }
@@ -2437,7 +2501,7 @@
   .hover\:bg-accent {
     &:hover {
       @media (hover: hover) {
-        background-color: #262626;
+        background-color: var(--accent);
       }
     }
   }
@@ -2451,49 +2515,74 @@
   .hover\:bg-destructive\/10 {
     &:hover {
       @media (hover: hover) {
-        background-color: color-mix(in oklab, #dc2626 10%, transparent);
+        background-color: var(--destructive);
+        @supports (color: color-mix(in lab, red, red)) {
+          & {
+            background-color: color-mix(in oklab, var(--destructive) 10%, transparent);
+          }
+        }
       }
     }
   }
   .hover\:bg-destructive\/90 {
     &:hover {
       @media (hover: hover) {
-        background-color: color-mix(in oklab, #dc2626 90%, transparent);
+        background-color: var(--destructive);
+        @supports (color: color-mix(in lab, red, red)) {
+          & {
+            background-color: color-mix(in oklab, var(--destructive) 90%, transparent);
+          }
+        }
       }
     }
   }
   .hover\:bg-muted {
     &:hover {
       @media (hover: hover) {
-        background-color: #262626;
+        background-color: var(--muted);
       }
     }
   }
   .hover\:bg-muted\/50 {
     &:hover {
       @media (hover: hover) {
-        background-color: color-mix(in oklab, #262626 50%, transparent);
+        background-color: var(--muted);
+        @supports (color: color-mix(in lab, red, red)) {
+          & {
+            background-color: color-mix(in oklab, var(--muted) 50%, transparent);
+          }
+        }
       }
     }
   }
   .hover\:bg-primary\/90 {
     &:hover {
       @media (hover: hover) {
-        background-color: color-mix(in oklab, #3b82f6 90%, transparent);
+        background-color: var(--primary);
+        @supports (color: color-mix(in lab, red, red)) {
+          & {
+            background-color: color-mix(in oklab, var(--primary) 90%, transparent);
+          }
+        }
       }
     }
   }
   .hover\:bg-secondary {
     &:hover {
       @media (hover: hover) {
-        background-color: #262626;
+        background-color: var(--secondary);
       }
     }
   }
   .hover\:bg-secondary\/80 {
     &:hover {
       @media (hover: hover) {
-        background-color: color-mix(in oklab, #262626 80%, transparent);
+        background-color: var(--secondary);
+        @supports (color: color-mix(in lab, red, red)) {
+          & {
+            background-color: color-mix(in oklab, var(--secondary) 80%, transparent);
+          }
+        }
       }
     }
   }
@@ -2507,21 +2596,21 @@
   .hover\:text-accent-foreground {
     &:hover {
       @media (hover: hover) {
-        color: #fafafa;
+        color: var(--accent-foreground);
       }
     }
   }
   .hover\:text-foreground {
     &:hover {
       @media (hover: hover) {
-        color: #fafafa;
+        color: var(--foreground);
       }
     }
   }
   .hover\:text-muted-foreground {
     &:hover {
       @media (hover: hover) {
-        color: #a1a1aa;
+        color: var(--muted-foreground);
       }
     }
   }
@@ -2606,7 +2695,12 @@
     &:is(:where(.group):is(.destructive) *) {
       &:hover {
         @media (hover: hover) {
-          border-color: color-mix(in oklab, #dc2626 30%, transparent);
+          border-color: var(--destructive);
+          @supports (color: color-mix(in lab, red, red)) {
+            & {
+              border-color: color-mix(in oklab, var(--destructive) 30%, transparent);
+            }
+          }
         }
       }
     }
@@ -2615,7 +2709,7 @@
     &:is(:where(.group):is(.destructive) *) {
       &:hover {
         @media (hover: hover) {
-          background-color: #dc2626;
+          background-color: var(--destructive);
         }
       }
     }
@@ -2624,7 +2718,7 @@
     &:is(:where(.group):is(.destructive) *) {
       &:hover {
         @media (hover: hover) {
-          color: #ffffff;
+          color: var(--destructive-foreground);
         }
       }
     }
@@ -2655,12 +2749,12 @@
   }
   .focus\:bg-accent {
     &:focus {
-      background-color: #262626;
+      background-color: var(--accent);
     }
   }
   .focus\:text-accent-foreground {
     &:focus {
-      color: #fafafa;
+      color: var(--accent-foreground);
     }
   }
   .focus\:opacity-100 {
@@ -2676,7 +2770,7 @@
   }
   .focus\:ring-ring {
     &:focus {
-      --tw-ring-color: #3b82f6;
+      --tw-ring-color: var(--ring);
     }
   }
   .focus\:ring-offset-2 {
@@ -2704,7 +2798,7 @@
   .group-\[\.destructive\]\:focus\:ring-destructive {
     &:is(:where(.group):is(.destructive) *) {
       &:focus {
-        --tw-ring-color: #dc2626;
+        --tw-ring-color: var(--destructive);
       }
     }
   }
@@ -2729,7 +2823,7 @@
   }
   .focus-visible\:border-ring {
     &:focus-visible {
-      border-color: #3b82f6;
+      border-color: var(--ring);
     }
   }
   .focus-visible\:ring-0 {
@@ -2764,17 +2858,27 @@
   }
   .focus-visible\:ring-destructive\/20 {
     &:focus-visible {
-      --tw-ring-color: color-mix(in oklab, #dc2626 20%, transparent);
+      --tw-ring-color: var(--destructive);
+      @supports (color: color-mix(in lab, red, red)) {
+        & {
+          --tw-ring-color: color-mix(in oklab, var(--destructive) 20%, transparent);
+        }
+      }
     }
   }
   .focus-visible\:ring-ring {
     &:focus-visible {
-      --tw-ring-color: #3b82f6;
+      --tw-ring-color: var(--ring);
     }
   }
   .focus-visible\:ring-ring\/50 {
     &:focus-visible {
-      --tw-ring-color: color-mix(in oklab, #3b82f6 50%, transparent);
+      --tw-ring-color: var(--ring);
+      @supports (color: color-mix(in lab, red, red)) {
+        & {
+          --tw-ring-color: color-mix(in oklab, var(--ring) 50%, transparent);
+        }
+      }
     }
   }
   .focus-visible\:ring-offset-1 {
@@ -2801,7 +2905,7 @@
   }
   .focus-visible\:outline-ring {
     &:focus-visible {
-      outline-color: #3b82f6;
+      outline-color: var(--ring);
     }
   }
   .active\:scale-95 {
@@ -2849,7 +2953,7 @@
   }
   .has-focus\:border-ring {
     &:has(*:focus) {
-      border-color: #3b82f6;
+      border-color: var(--ring);
     }
   }
   .has-focus\:ring-\[3px\] {
@@ -2860,7 +2964,12 @@
   }
   .has-focus\:ring-ring\/50 {
     &:has(*:focus) {
-      --tw-ring-color: color-mix(in oklab, #3b82f6 50%, transparent);
+      --tw-ring-color: var(--ring);
+      @supports (color: color-mix(in lab, red, red)) {
+        & {
+          --tw-ring-color: color-mix(in oklab, var(--ring) 50%, transparent);
+        }
+      }
     }
   }
   .has-disabled\:opacity-50 {
@@ -2875,12 +2984,17 @@
   }
   .has-data-\[state\=checked\]\:border-primary {
     &:has(*[data-state="checked"]) {
-      border-color: #3b82f6;
+      border-color: var(--primary);
     }
   }
   .has-data-\[state\=checked\]\:bg-primary\/5 {
     &:has(*[data-state="checked"]) {
-      background-color: color-mix(in oklab, #3b82f6 5%, transparent);
+      background-color: var(--primary);
+      @supports (color: color-mix(in lab, red, red)) {
+        & {
+          background-color: color-mix(in oklab, var(--primary) 5%, transparent);
+        }
+      }
     }
   }
   .has-data-\[variant\=inset\]\:bg-sidebar {
@@ -2890,7 +3004,7 @@
   }
   .has-\[\[data-slot\=input-group-control\]\:focus-visible\]\:border-ring {
     &:has(*:is([data-slot=input-group-control]:focus-visible)) {
-      border-color: #3b82f6;
+      border-color: var(--ring);
     }
   }
   .has-\[\[data-slot\=input-group-control\]\:focus-visible\]\:ring-\[3px\] {
@@ -2901,17 +3015,27 @@
   }
   .has-\[\[data-slot\=input-group-control\]\:focus-visible\]\:ring-ring\/50 {
     &:has(*:is([data-slot=input-group-control]:focus-visible)) {
-      --tw-ring-color: color-mix(in oklab, #3b82f6 50%, transparent);
+      --tw-ring-color: var(--ring);
+      @supports (color: color-mix(in lab, red, red)) {
+        & {
+          --tw-ring-color: color-mix(in oklab, var(--ring) 50%, transparent);
+        }
+      }
     }
   }
   .has-\[\[data-slot\]\[aria-invalid\=true\]\]\:border-destructive {
     &:has(*:is([data-slot][aria-invalid=true])) {
-      border-color: #dc2626;
+      border-color: var(--destructive);
     }
   }
   .has-\[\[data-slot\]\[aria-invalid\=true\]\]\:ring-destructive\/20 {
     &:has(*:is([data-slot][aria-invalid=true])) {
-      --tw-ring-color: color-mix(in oklab, #dc2626 20%, transparent);
+      --tw-ring-color: var(--destructive);
+      @supports (color: color-mix(in lab, red, red)) {
+        & {
+          --tw-ring-color: color-mix(in oklab, var(--destructive) 20%, transparent);
+        }
+      }
     }
   }
   .has-\[\>\[data-align\=block-end\]\]\:h-auto {
@@ -3047,17 +3171,22 @@
   }
   .aria-invalid\:border-destructive {
     &[aria-invalid="true"] {
-      border-color: #dc2626;
+      border-color: var(--destructive);
     }
   }
   .aria-invalid\:ring-destructive\/20 {
     &[aria-invalid="true"] {
-      --tw-ring-color: color-mix(in oklab, #dc2626 20%, transparent);
+      --tw-ring-color: var(--destructive);
+      @supports (color: color-mix(in lab, red, red)) {
+        & {
+          --tw-ring-color: color-mix(in oklab, var(--destructive) 20%, transparent);
+        }
+      }
     }
   }
   .aria-selected\:text-muted-foreground {
     &[aria-selected="true"] {
-      color: #a1a1aa;
+      color: var(--muted-foreground);
     }
   }
   .data-\[active\=true\]\:z-10 {
@@ -3067,12 +3196,17 @@
   }
   .data-\[active\=true\]\:border-ring {
     &[data-active="true"] {
-      border-color: #3b82f6;
+      border-color: var(--ring);
     }
   }
   .data-\[active\=true\]\:bg-accent\/50 {
     &[data-active="true"] {
-      background-color: color-mix(in oklab, #262626 50%, transparent);
+      background-color: var(--accent);
+      @supports (color: color-mix(in lab, red, red)) {
+        & {
+          background-color: color-mix(in oklab, var(--accent) 50%, transparent);
+        }
+      }
     }
   }
   .data-\[active\=true\]\:bg-sidebar-accent {
@@ -3088,7 +3222,7 @@
   }
   .data-\[active\=true\]\:text-accent-foreground {
     &[data-active="true"] {
-      color: #fafafa;
+      color: var(--accent-foreground);
     }
   }
   .data-\[active\=true\]\:text-sidebar-accent-foreground {
@@ -3104,14 +3238,19 @@
   }
   .data-\[active\=true\]\:ring-ring\/50 {
     &[data-active="true"] {
-      --tw-ring-color: color-mix(in oklab, #3b82f6 50%, transparent);
+      --tw-ring-color: var(--ring);
+      @supports (color: color-mix(in lab, red, red)) {
+        & {
+          --tw-ring-color: color-mix(in oklab, var(--ring) 50%, transparent);
+        }
+      }
     }
   }
   .data-\[active\=true\]\:hover\:bg-accent {
     &[data-active="true"] {
       &:hover {
         @media (hover: hover) {
-          background-color: #262626;
+          background-color: var(--accent);
         }
       }
     }
@@ -3119,21 +3258,26 @@
   .data-\[active\=true\]\:focus\:bg-accent {
     &[data-active="true"] {
       &:focus {
-        background-color: #262626;
+        background-color: var(--accent);
       }
     }
   }
   .data-\[active\=true\]\:aria-invalid\:border-destructive {
     &[data-active="true"] {
       &[aria-invalid="true"] {
-        border-color: #dc2626;
+        border-color: var(--destructive);
       }
     }
   }
   .data-\[active\=true\]\:aria-invalid\:ring-destructive\/20 {
     &[data-active="true"] {
       &[aria-invalid="true"] {
-        --tw-ring-color: color-mix(in oklab, #dc2626 20%, transparent);
+        --tw-ring-color: var(--destructive);
+        @supports (color: color-mix(in lab, red, red)) {
+          & {
+            --tw-ring-color: color-mix(in oklab, var(--destructive) 20%, transparent);
+          }
+        }
       }
     }
   }
@@ -3159,7 +3303,7 @@
   }
   .data-\[error\=true\]\:text-destructive {
     &[data-error="true"] {
-      color: #dc2626;
+      color: var(--destructive);
     }
   }
   .data-\[inset\]\:pl-8 {
@@ -3169,7 +3313,7 @@
   }
   .data-\[invalid\=true\]\:text-destructive {
     &[data-invalid="true"] {
-      color: #dc2626;
+      color: var(--destructive);
     }
   }
   .data-\[motion\=from-end\]\:slide-in-from-right-52 {
@@ -3331,7 +3475,7 @@
   }
   .data-\[placeholder\]\:text-muted-foreground {
     &[data-placeholder] {
-      color: #a1a1aa;
+      color: var(--muted-foreground);
     }
   }
   .data-\[range-end\=true\]\:rounded-md {
@@ -3347,12 +3491,12 @@
   }
   .data-\[range-end\=true\]\:bg-primary {
     &[data-range-end="true"] {
-      background-color: #3b82f6;
+      background-color: var(--primary);
     }
   }
   .data-\[range-end\=true\]\:text-primary-foreground {
     &[data-range-end="true"] {
-      color: #ffffff;
+      color: var(--primary-foreground);
     }
   }
   .data-\[range-middle\=true\]\:rounded-none {
@@ -3362,12 +3506,12 @@
   }
   .data-\[range-middle\=true\]\:bg-accent {
     &[data-range-middle="true"] {
-      background-color: #262626;
+      background-color: var(--accent);
     }
   }
   .data-\[range-middle\=true\]\:text-accent-foreground {
     &[data-range-middle="true"] {
-      color: #fafafa;
+      color: var(--accent-foreground);
     }
   }
   .data-\[range-start\=true\]\:rounded-md {
@@ -3383,22 +3527,22 @@
   }
   .data-\[range-start\=true\]\:bg-primary {
     &[data-range-start="true"] {
-      background-color: #3b82f6;
+      background-color: var(--primary);
     }
   }
   .data-\[range-start\=true\]\:text-primary-foreground {
     &[data-range-start="true"] {
-      color: #ffffff;
+      color: var(--primary-foreground);
     }
   }
   .data-\[selected-single\=true\]\:bg-primary {
     &[data-selected-single="true"] {
-      background-color: #3b82f6;
+      background-color: var(--primary);
     }
   }
   .data-\[selected-single\=true\]\:text-primary-foreground {
     &[data-selected-single="true"] {
-      color: #ffffff;
+      color: var(--primary-foreground);
     }
   }
   .data-\[selected\=true\]\:rounded-none {
@@ -3408,12 +3552,12 @@
   }
   .data-\[selected\=true\]\:bg-accent {
     &[data-selected="true"] {
-      background-color: #262626;
+      background-color: var(--accent);
     }
   }
   .data-\[selected\=true\]\:text-accent-foreground {
     &[data-selected="true"] {
-      color: #fafafa;
+      color: var(--accent-foreground);
     }
   }
   .data-\[side\=bottom\]\:translate-y-1 {
@@ -3473,7 +3617,12 @@
   .\*\:data-\[slot\=alert-description\]\:text-destructive\/90 {
     :is(& > *) {
       &[data-slot="alert-description"] {
-        color: color-mix(in oklab, #dc2626 90%, transparent);
+        color: var(--destructive);
+        @supports (color: color-mix(in lab, red, red)) {
+          & {
+            color: color-mix(in oklab, var(--destructive) 90%, transparent);
+          }
+        }
       }
     }
   }
@@ -3542,7 +3691,7 @@
   }
   .data-\[state\=active\]\:bg-background {
     &[data-state="active"] {
-      background-color: #0a0a0a;
+      background-color: var(--background);
     }
   }
   .data-\[state\=active\]\:shadow-sm {
@@ -3559,17 +3708,17 @@
   }
   .data-\[state\=checked\]\:border-primary {
     &[data-state="checked"] {
-      border-color: #3b82f6;
+      border-color: var(--primary);
     }
   }
   .data-\[state\=checked\]\:bg-primary {
     &[data-state="checked"] {
-      background-color: #3b82f6;
+      background-color: var(--primary);
     }
   }
   .data-\[state\=checked\]\:text-primary-foreground {
     &[data-state="checked"] {
-      color: #ffffff;
+      color: var(--primary-foreground);
     }
   }
   .data-\[state\=closed\]\:animate-accordion-up {
@@ -3666,12 +3815,12 @@
   }
   .data-\[state\=on\]\:bg-accent {
     &[data-state="on"] {
-      background-color: #262626;
+      background-color: var(--accent);
     }
   }
   .data-\[state\=on\]\:text-accent-foreground {
     &[data-state="on"] {
-      color: #fafafa;
+      color: var(--accent-foreground);
     }
   }
   .data-\[state\=open\]\:animate-accordion-down {
@@ -3686,27 +3835,32 @@
   }
   .data-\[state\=open\]\:bg-accent {
     &[data-state="open"] {
-      background-color: #262626;
+      background-color: var(--accent);
     }
   }
   .data-\[state\=open\]\:bg-accent\/50 {
     &[data-state="open"] {
-      background-color: color-mix(in oklab, #262626 50%, transparent);
+      background-color: var(--accent);
+      @supports (color: color-mix(in lab, red, red)) {
+        & {
+          background-color: color-mix(in oklab, var(--accent) 50%, transparent);
+        }
+      }
     }
   }
   .data-\[state\=open\]\:bg-secondary {
     &[data-state="open"] {
-      background-color: #262626;
+      background-color: var(--secondary);
     }
   }
   .data-\[state\=open\]\:text-accent-foreground {
     &[data-state="open"] {
-      color: #fafafa;
+      color: var(--accent-foreground);
     }
   }
   .data-\[state\=open\]\:text-muted-foreground {
     &[data-state="open"] {
-      color: #a1a1aa;
+      color: var(--muted-foreground);
     }
   }
   .data-\[state\=open\]\:opacity-100 {
@@ -3790,7 +3944,7 @@
     &[data-state="open"] {
       &:hover {
         @media (hover: hover) {
-          background-color: #262626;
+          background-color: var(--accent);
         }
       }
     }
@@ -3816,13 +3970,13 @@
   .data-\[state\=open\]\:focus\:bg-accent {
     &[data-state="open"] {
       &:focus {
-        background-color: #262626;
+        background-color: var(--accent);
       }
     }
   }
   .data-\[state\=selected\]\:bg-muted {
     &[data-state="selected"] {
-      background-color: #262626;
+      background-color: var(--muted);
     }
   }
   .data-\[state\=unchecked\]\:translate-x-0 {
@@ -3833,7 +3987,7 @@
   }
   .data-\[state\=unchecked\]\:bg-input {
     &[data-state="unchecked"] {
-      background-color: #262626;
+      background-color: var(--input);
     }
   }
   .data-\[state\=visible\]\:animate-in {
@@ -3876,20 +4030,25 @@
   }
   .data-\[variant\=destructive\]\:text-destructive {
     &[data-variant="destructive"] {
-      color: #dc2626;
+      color: var(--destructive);
     }
   }
   .data-\[variant\=destructive\]\:focus\:bg-destructive\/10 {
     &[data-variant="destructive"] {
       &:focus {
-        background-color: color-mix(in oklab, #dc2626 10%, transparent);
+        background-color: var(--destructive);
+        @supports (color: color-mix(in lab, red, red)) {
+          & {
+            background-color: color-mix(in oklab, var(--destructive) 10%, transparent);
+          }
+        }
       }
     }
   }
   .data-\[variant\=destructive\]\:focus\:text-destructive {
     &[data-variant="destructive"] {
       &:focus {
-        color: #dc2626;
+        color: var(--destructive);
       }
     }
   }
@@ -4038,7 +4197,12 @@
   }
   .supports-\[backdrop-filter\]\:bg-background\/60 {
     @supports (backdrop-filter: var(--tw)) {
-      background-color: color-mix(in oklab, #0a0a0a 60%, transparent);
+      background-color: var(--background);
+      @supports (color: color-mix(in lab, red, red)) {
+        & {
+          background-color: color-mix(in oklab, var(--background) 60%, transparent);
+        }
+      }
     }
   }
   .sm\:top-auto {
@@ -4071,6 +4235,16 @@
       display: inline;
     }
   }
+  .sm\:aspect-square {
+    @media (width >= 40rem) {
+      aspect-ratio: 1 / 1;
+    }
+  }
+  .sm\:w-auto {
+    @media (width >= 40rem) {
+      width: auto;
+    }
+  }
   .sm\:max-w-lg {
     @media (width >= 40rem) {
       max-width: var(--container-lg);
@@ -4079,6 +4253,11 @@
   .sm\:max-w-sm {
     @media (width >= 40rem) {
       max-width: var(--container-sm);
+    }
+  }
+  .sm\:flex-none {
+    @media (width >= 40rem) {
+      flex: none;
     }
   }
   .sm\:grid-cols-2 {
@@ -4096,6 +4275,16 @@
       flex-direction: row;
     }
   }
+  .sm\:items-center {
+    @media (width >= 40rem) {
+      align-items: center;
+    }
+  }
+  .sm\:justify-between {
+    @media (width >= 40rem) {
+      justify-content: space-between;
+    }
+  }
   .sm\:justify-end {
     @media (width >= 40rem) {
       justify-content: flex-end;
@@ -4104,6 +4293,11 @@
   .sm\:gap-2\.5 {
     @media (width >= 40rem) {
       gap: calc(var(--spacing) * 2.5);
+    }
+  }
+  .sm\:p-5 {
+    @media (width >= 40rem) {
+      padding: calc(var(--spacing) * 5);
     }
   }
   .sm\:pr-2\.5 {
@@ -4116,9 +4310,32 @@
       padding-left: calc(var(--spacing) * 2.5);
     }
   }
+  .sm\:text-center {
+    @media (width >= 40rem) {
+      text-align: center;
+    }
+  }
   .sm\:text-left {
     @media (width >= 40rem) {
       text-align: left;
+    }
+  }
+  .sm\:text-2xl {
+    @media (width >= 40rem) {
+      font-size: var(--text-2xl);
+      line-height: var(--tw-leading, var(--text-2xl--line-height));
+    }
+  }
+  .sm\:text-lg {
+    @media (width >= 40rem) {
+      font-size: var(--text-lg);
+      line-height: var(--tw-leading, var(--text-lg--line-height));
+    }
+  }
+  .sm\:text-sm {
+    @media (width >= 40rem) {
+      font-size: var(--text-sm);
+      line-height: var(--tw-leading, var(--text-sm--line-height));
     }
   }
   .data-\[state\=open\]\:sm\:slide-in-from-bottom-full {
@@ -4273,17 +4490,27 @@
   }
   .dark\:border-input {
     &:is(.dark *) {
-      border-color: #262626;
+      border-color: var(--input);
     }
   }
   .dark\:bg-destructive\/60 {
     &:is(.dark *) {
-      background-color: color-mix(in oklab, #dc2626 60%, transparent);
+      background-color: var(--destructive);
+      @supports (color: color-mix(in lab, red, red)) {
+        & {
+          background-color: color-mix(in oklab, var(--destructive) 60%, transparent);
+        }
+      }
     }
   }
   .dark\:bg-input\/30 {
     &:is(.dark *) {
-      background-color: color-mix(in oklab, #262626 30%, transparent);
+      background-color: var(--input);
+      @supports (color: color-mix(in lab, red, red)) {
+        & {
+          background-color: color-mix(in oklab, var(--input) 30%, transparent);
+        }
+      }
     }
   }
   .dark\:bg-transparent {
@@ -4293,14 +4520,19 @@
   }
   .dark\:text-muted-foreground {
     &:is(.dark *) {
-      color: #a1a1aa;
+      color: var(--muted-foreground);
     }
   }
   .dark\:hover\:bg-accent\/50 {
     &:is(.dark *) {
       &:hover {
         @media (hover: hover) {
-          background-color: color-mix(in oklab, #262626 50%, transparent);
+          background-color: var(--accent);
+          @supports (color: color-mix(in lab, red, red)) {
+            & {
+              background-color: color-mix(in oklab, var(--accent) 50%, transparent);
+            }
+          }
         }
       }
     }
@@ -4309,7 +4541,12 @@
     &:is(.dark *) {
       &:hover {
         @media (hover: hover) {
-          background-color: color-mix(in oklab, #262626 50%, transparent);
+          background-color: var(--input);
+          @supports (color: color-mix(in lab, red, red)) {
+            & {
+              background-color: color-mix(in oklab, var(--input) 50%, transparent);
+            }
+          }
         }
       }
     }
@@ -4318,7 +4555,7 @@
     &:is(.dark *) {
       &:hover {
         @media (hover: hover) {
-          color: #fafafa;
+          color: var(--accent-foreground);
         }
       }
     }
@@ -4326,28 +4563,48 @@
   .dark\:focus-visible\:ring-destructive\/40 {
     &:is(.dark *) {
       &:focus-visible {
-        --tw-ring-color: color-mix(in oklab, #dc2626 40%, transparent);
+        --tw-ring-color: var(--destructive);
+        @supports (color: color-mix(in lab, red, red)) {
+          & {
+            --tw-ring-color: color-mix(in oklab, var(--destructive) 40%, transparent);
+          }
+        }
       }
     }
   }
   .dark\:has-data-\[state\=checked\]\:bg-primary\/10 {
     &:is(.dark *) {
       &:has(*[data-state="checked"]) {
-        background-color: color-mix(in oklab, #3b82f6 10%, transparent);
+        background-color: var(--primary);
+        @supports (color: color-mix(in lab, red, red)) {
+          & {
+            background-color: color-mix(in oklab, var(--primary) 10%, transparent);
+          }
+        }
       }
     }
   }
   .dark\:has-\[\[data-slot\]\[aria-invalid\=true\]\]\:ring-destructive\/40 {
     &:is(.dark *) {
       &:has(*:is([data-slot][aria-invalid=true])) {
-        --tw-ring-color: color-mix(in oklab, #dc2626 40%, transparent);
+        --tw-ring-color: var(--destructive);
+        @supports (color: color-mix(in lab, red, red)) {
+          & {
+            --tw-ring-color: color-mix(in oklab, var(--destructive) 40%, transparent);
+          }
+        }
       }
     }
   }
   .dark\:aria-invalid\:ring-destructive\/40 {
     &:is(.dark *) {
       &[aria-invalid="true"] {
-        --tw-ring-color: color-mix(in oklab, #dc2626 40%, transparent);
+        --tw-ring-color: var(--destructive);
+        @supports (color: color-mix(in lab, red, red)) {
+          & {
+            --tw-ring-color: color-mix(in oklab, var(--destructive) 40%, transparent);
+          }
+        }
       }
     }
   }
@@ -4355,7 +4612,12 @@
     &:is(.dark *) {
       &[data-active="true"] {
         &[aria-invalid="true"] {
-          --tw-ring-color: color-mix(in oklab, #dc2626 40%, transparent);
+          --tw-ring-color: var(--destructive);
+          @supports (color: color-mix(in lab, red, red)) {
+            & {
+              --tw-ring-color: color-mix(in oklab, var(--destructive) 40%, transparent);
+            }
+          }
         }
       }
     }
@@ -4363,49 +4625,59 @@
   .dark\:data-\[state\=active\]\:border-input {
     &:is(.dark *) {
       &[data-state="active"] {
-        border-color: #262626;
+        border-color: var(--input);
       }
     }
   }
   .dark\:data-\[state\=active\]\:bg-input\/30 {
     &:is(.dark *) {
       &[data-state="active"] {
-        background-color: color-mix(in oklab, #262626 30%, transparent);
+        background-color: var(--input);
+        @supports (color: color-mix(in lab, red, red)) {
+          & {
+            background-color: color-mix(in oklab, var(--input) 30%, transparent);
+          }
+        }
       }
     }
   }
   .dark\:data-\[state\=active\]\:text-foreground {
     &:is(.dark *) {
       &[data-state="active"] {
-        color: #fafafa;
+        color: var(--foreground);
       }
     }
   }
   .dark\:data-\[state\=checked\]\:bg-primary {
     &:is(.dark *) {
       &[data-state="checked"] {
-        background-color: #3b82f6;
+        background-color: var(--primary);
       }
     }
   }
   .dark\:data-\[state\=checked\]\:bg-primary-foreground {
     &:is(.dark *) {
       &[data-state="checked"] {
-        background-color: #ffffff;
+        background-color: var(--primary-foreground);
       }
     }
   }
   .dark\:data-\[state\=unchecked\]\:bg-foreground {
     &:is(.dark *) {
       &[data-state="unchecked"] {
-        background-color: #fafafa;
+        background-color: var(--foreground);
       }
     }
   }
   .dark\:data-\[state\=unchecked\]\:bg-input\/80 {
     &:is(.dark *) {
       &[data-state="unchecked"] {
-        background-color: color-mix(in oklab, #262626 80%, transparent);
+        background-color: var(--input);
+        @supports (color: color-mix(in lab, red, red)) {
+          & {
+            background-color: color-mix(in oklab, var(--input) 80%, transparent);
+          }
+        }
       }
     }
   }
@@ -4413,24 +4685,34 @@
     &:is(.dark *) {
       &[data-variant="destructive"] {
         &:focus {
-          background-color: color-mix(in oklab, #dc2626 20%, transparent);
+          background-color: var(--destructive);
+          @supports (color: color-mix(in lab, red, red)) {
+            & {
+              background-color: color-mix(in oklab, var(--destructive) 20%, transparent);
+            }
+          }
         }
       }
     }
   }
   .\[\&_\.recharts-cartesian-axis-tick_text\]\:fill-muted-foreground {
     & .recharts-cartesian-axis-tick text {
-      fill: #a1a1aa;
+      fill: var(--muted-foreground);
     }
   }
   .\[\&_\.recharts-cartesian-grid_line\[stroke\=\'\#ccc\'\]\]\:stroke-border\/50 {
     & .recharts-cartesian-grid line[stroke='#ccc'] {
-      stroke: color-mix(in oklab, #262626 50%, transparent);
+      stroke: var(--border);
+      @supports (color: color-mix(in lab, red, red)) {
+        & {
+          stroke: color-mix(in oklab, var(--border) 50%, transparent);
+        }
+      }
     }
   }
   .\[\&_\.recharts-curve\.recharts-tooltip-cursor\]\:stroke-border {
     & .recharts-curve.recharts-tooltip-cursor {
-      stroke: #262626;
+      stroke: var(--border);
     }
   }
   .\[\&_\.recharts-dot\[stroke\=\'\#fff\'\]\]\:stroke-transparent {
@@ -4450,22 +4732,22 @@
   }
   .\[\&_\.recharts-polar-grid_\[stroke\=\'\#ccc\'\]\]\:stroke-border {
     & .recharts-polar-grid [stroke='#ccc'] {
-      stroke: #262626;
+      stroke: var(--border);
     }
   }
   .\[\&_\.recharts-radial-bar-background-sector\]\:fill-muted {
     & .recharts-radial-bar-background-sector {
-      fill: #262626;
+      fill: var(--muted);
     }
   }
   .\[\&_\.recharts-rectangle\.recharts-tooltip-cursor\]\:fill-muted {
     & .recharts-rectangle.recharts-tooltip-cursor {
-      fill: #262626;
+      fill: var(--muted);
     }
   }
   .\[\&_\.recharts-reference-line_\[stroke\=\'\#ccc\'\]\]\:stroke-border {
     & .recharts-reference-line [stroke='#ccc'] {
-      stroke: #262626;
+      stroke: var(--border);
     }
   }
   .\[\&_\.recharts-sector\]\:outline-hidden {
@@ -4517,7 +4799,7 @@
   }
   .\[\&_\[cmdk-group-heading\]\]\:text-muted-foreground {
     & [cmdk-group-heading] {
-      color: #a1a1aa;
+      color: var(--muted-foreground);
     }
   }
   .\[\&_\[cmdk-group\]\]\:px-2 {
@@ -4612,7 +4894,7 @@
   }
   .\[\&_svg\:not\(\[class\*\=\'text-\'\]\)\]\:text-muted-foreground {
     & svg:not([class*='text-']) {
-      color: #a1a1aa;
+      color: var(--muted-foreground);
     }
   }
   .\[\&_tr\]\:border-b {
@@ -4712,7 +4994,7 @@
     &[data-variant="destructive"] {
       :is(& > *) {
         &:is(svg) {
-          color: #dc2626 !important;
+          color: var(--destructive) !important;
         }
       }
     }
@@ -4861,7 +5143,7 @@
   }
   .\[\&\>a\:hover\]\:text-primary {
     &>a:hover {
-      color: #3b82f6;
+      color: var(--primary);
     }
   }
   .\[\&\>button\]\:hidden {
@@ -4986,7 +5268,7 @@
   }
   .\[\&\>svg\]\:text-muted-foreground {
     &>svg {
-      color: #a1a1aa;
+      color: var(--muted-foreground);
     }
   }
   .\[\&\>svg\]\:text-sidebar-accent-foreground {
@@ -5056,18 +5338,28 @@
   }
   .\[\[data-slot\=tooltip-content\]_\&\]\:bg-background\/20 {
     [data-slot=tooltip-content] & {
-      background-color: color-mix(in oklab, #0a0a0a 20%, transparent);
+      background-color: var(--background);
+      @supports (color: color-mix(in lab, red, red)) {
+        & {
+          background-color: color-mix(in oklab, var(--background) 20%, transparent);
+        }
+      }
     }
   }
   .\[\[data-slot\=tooltip-content\]_\&\]\:text-background {
     [data-slot=tooltip-content] & {
-      color: #0a0a0a;
+      color: var(--background);
     }
   }
   .dark\:\[\[data-slot\=tooltip-content\]_\&\]\:bg-background\/10 {
     &:is(.dark *) {
       [data-slot=tooltip-content] & {
-        background-color: color-mix(in oklab, #0a0a0a 10%, transparent);
+        background-color: var(--background);
+        @supports (color: color-mix(in lab, red, red)) {
+          & {
+            background-color: color-mix(in oklab, var(--background) 10%, transparent);
+          }
+        }
       }
     }
   }
@@ -5087,7 +5379,7 @@
     a& {
       &:hover {
         @media (hover: hover) {
-          background-color: #262626;
+          background-color: var(--accent);
         }
       }
     }
@@ -5096,7 +5388,12 @@
     a& {
       &:hover {
         @media (hover: hover) {
-          background-color: color-mix(in oklab, #262626 50%, transparent);
+          background-color: var(--accent);
+          @supports (color: color-mix(in lab, red, red)) {
+            & {
+              background-color: color-mix(in oklab, var(--accent) 50%, transparent);
+            }
+          }
         }
       }
     }
@@ -5105,7 +5402,12 @@
     a& {
       &:hover {
         @media (hover: hover) {
-          background-color: color-mix(in oklab, #dc2626 90%, transparent);
+          background-color: var(--destructive);
+          @supports (color: color-mix(in lab, red, red)) {
+            & {
+              background-color: color-mix(in oklab, var(--destructive) 90%, transparent);
+            }
+          }
         }
       }
     }
@@ -5114,7 +5416,12 @@
     a& {
       &:hover {
         @media (hover: hover) {
-          background-color: color-mix(in oklab, #3b82f6 90%, transparent);
+          background-color: var(--primary);
+          @supports (color: color-mix(in lab, red, red)) {
+            & {
+              background-color: color-mix(in oklab, var(--primary) 90%, transparent);
+            }
+          }
         }
       }
     }
@@ -5123,7 +5430,12 @@
     a& {
       &:hover {
         @media (hover: hover) {
-          background-color: color-mix(in oklab, #262626 90%, transparent);
+          background-color: var(--secondary);
+          @supports (color: color-mix(in lab, red, red)) {
+            & {
+              background-color: color-mix(in oklab, var(--secondary) 90%, transparent);
+            }
+          }
         }
       }
     }
@@ -5132,7 +5444,7 @@
     a& {
       &:hover {
         @media (hover: hover) {
-          color: #fafafa;
+          color: var(--accent-foreground);
         }
       }
     }
@@ -5213,9 +5525,9 @@
   initial-value: 0;
 }
 :root {
-  --background: oklch(1 0 0);
+  --background: oklch(100% 0.00011 271.152);
   --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
+  --card: oklch(93.403% 0.00011 271.152 / 0.556);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
@@ -5283,12 +5595,17 @@
 }
 @layer base {
   * {
-    border-color: #262626;
-    outline-color: color-mix(in oklab, #3b82f6 50%, transparent);
+    border-color: var(--border);
+    outline-color: var(--ring);
+    @supports (color: color-mix(in lab, red, red)) {
+      & {
+        outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+      }
+    }
   }
   body {
-    background-color: #0a0a0a;
-    color: #fafafa;
+    background-color: var(--background);
+    color: var(--foreground);
   }
 }
 @property --tw-translate-x {

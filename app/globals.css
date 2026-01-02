@@ -4,9 +4,9 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(1 0 0);
+  --background: oklch(100% 0.00011 271.152);
   --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
+  --card: oklch(93.403% 0.00011 271.152 / 0.556);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
@@ -121,7 +121,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   @theme inline {
     --color-background: #0a0a0a;
     --color-foreground: #fafafa;
@@ -148,7 +148,7 @@
     --color-input: #262626;
     --color-ring: #3b82f6;
   }
-}
+} */
 
 @layer base {
   * {
