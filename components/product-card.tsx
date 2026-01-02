@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Plus } from "lucide-react";
 import type { Product, Client } from "@/types";
 
 import { urlFor } from "@/sanity/lib/image";
@@ -35,10 +34,8 @@ export default function ProductCard({
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Image Container */}
-      {/* <div className="relative aspect-square overflow-hidden bg-muted"> */}
       <div className="relative aspect-4/5 sm:aspect-square overflow-hidden">
         <img
-          // src={isHovered ? product.imagen2 : product.imagen1}
           src={urlFor(
             isHovered && product.imagen2 ? product.imagen2 : product.imagen1
           )
@@ -57,72 +54,44 @@ export default function ProductCard({
 
       {/* Content */}
       <div className="p-5">
-        {/* <h3 className="mb-1 text-lg font-semibold text-card-foreground">{product.nombre}</h3> */}
-        {/* <h3 className="mb-1 text-base sm:text-lg font-semibold sm:text-center">
-          {product.nombre}
-        </h3> */}
-        <h3 className="mb-1 text-base font-semibold text-center sm:text-left sm:text-lg">
+        <h3 className="mb-1 text-base font-semibold text-center sm:text-lg sm:text-left">
           {product.nombre}
         </h3>
 
         <p className="mb-4 text-sm text-muted-foreground text-center sm:text-left sm:text-lg">
           {product.descripcion}
         </p>
-        {/* <p className="mb-3 text-xs sm:text-sm text-muted-foreground line-clamp-2">
-
-          {product.descripcion}
-        </p> */}
 
         {/* Price and Actions */}
-        {/* <div className="flex items-center justify-between"> */}
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between ">
-          {/* <div>
-            <p className="text-2xl font-bold text-primary">${precio}</p>
-           
-          </div> */}
-          <div className="w-full sm:w-auto">
-            <p className="text-xl sm:text-2xl font-bold text-primar text-center">
-              ${precio}
-            </p>
-          </div>
-
-          {/* <div className="flex items-center gap-2"> */}
-          <div className="flex w-full items-center justify-between gap-2 sm:w-auto sm:justify-end">
-            {/* Quantity Selector */}
-            <div className="flex items-center gap-1 rounded-lg border border-border bg-background">
-              <button
-                onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                className="px-2 py-1 text-muted-foreground transition-colors hover:text-foreground"
-              >
-                −
-              </button>
-              <span className="w-8 text-center text-sm font-medium">
-                {quantity}
-              </span>
-              <button
-                onClick={() => setQuantity(quantity + 1)}
-                className="px-2 py-1 text-muted-foreground transition-colors hover:text-foreground"
-              >
-                +
-              </button>
-            </div>
-
-            {/* Add Button */}
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+          {/* Quantity selector */}
+          <div className="mx-auto flex items-center rounded-lg border border-border bg-background sm:mx-0">
             <button
-              onClick={handleAddToCart}
-              className="flex-1 sm:flex-none rounded-lg bg-primary px-3 py-2 text-primary-foreground transition-all hover:bg-primary/90 hover:shadow-md active:scale-95"
+              onClick={() => setQuantity(Math.max(1, quantity - 1))}
+              className="px-4 py-2 text-lg font-semibold text-muted-foreground hover:text-foreground"
             >
-              Agregar
+              −
             </button>
 
-            {/* <button
-              onClick={handleAddToCart}
-              className="rounded-lg bg-primary p-2 text-primary-foreground transition-all hover:bg-primary/90 hover:shadow-md active:scale-95"
+            <span className="min-w-[3rem] text-center text-lg font-semibold">
+              {quantity}
+            </span>
+
+            <button
+              onClick={() => setQuantity(quantity + 1)}
+              className="px-4 py-2 text-lg font-semibold text-muted-foreground hover:text-foreground"
             >
-              <p>Agregar</p> 
+              +
             </button>
-              */}
           </div>
+
+          {/* Add button */}
+          <button
+            onClick={handleAddToCart}
+            className="w-full sm:w-auto rounded-lg bg-primary px-5 py-2 text-primary-foreground transition-all hover:bg-primary/90 active:scale-95"
+          >
+            Agregar
+          </button>
         </div>
       </div>
     </div>
