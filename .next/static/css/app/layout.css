@@ -550,6 +550,9 @@
   .mt-4 {
     margin-top: calc(var(--spacing) * 4);
   }
+  .mt-10 {
+    margin-top: calc(var(--spacing) * 10);
+  }
   .mt-auto {
     margin-top: auto;
   }
@@ -790,6 +793,18 @@
   }
   .min-h-16 {
     min-height: calc(var(--spacing) * 16);
+  }
+  .min-h-\[0\.5rem\] {
+    min-height: 0.5rem;
+  }
+  .min-h-\[1\.5rem\] {
+    min-height: 1.5rem;
+  }
+  .min-h-\[3\.5rem\] {
+    min-height: 3.5rem;
+  }
+  .min-h-\[3rem\] {
+    min-height: 3rem;
   }
   .min-h-screen {
     min-height: 100vh;
@@ -4309,16 +4324,6 @@
   .sm\:gap-2\.5 {
     @media (width >= 40rem) {
       gap: calc(var(--spacing) * 2.5);
-    }
-  }
-  .sm\:gap-3 {
-    @media (width >= 40rem) {
-      gap: calc(var(--spacing) * 3);
-    }
-  }
-  .sm\:gap-4 {
-    @media (width >= 40rem) {
-      gap: calc(var(--spacing) * 4);
     }
   }
   .sm\:pr-2\.5 {

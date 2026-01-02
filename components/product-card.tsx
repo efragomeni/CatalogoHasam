@@ -51,53 +51,58 @@ export default function ProductCard({
       </div>
 
       {/* Content */}
-      <div className="p-5">
-        <h3 className="mb-1 text-base font-semibold text-center sm:text-left sm:text-lg">
+      {/* <div className="p-5"> */}
+      <div className="flex h-full flex-col p-5">
+        {/* <h3 className="mb-1 text-base font-semibold text-center sm:text-left sm:text-lg"> */}
+        <h3 className="mb-1 text-base font-semibold text-center sm:text-left sm:text-lg line-clamp-2 min-h-[3rem]">
           {product.nombre}
         </h3>
 
-        <p className="mb-4 text-sm text-muted-foreground text-center sm:text-left sm:text-base">
+        {/* <p className="mb-4 text-sm text-muted-foreground text-center sm:text-left sm:text-base">
+          {product.descripcion}
+        </p> */}
+        <p className="mb-4 text-sm text-muted-foreground text-center sm:text-left sm:text-lg line-clamp-2 min-h-[1.5rem]">
           {product.descripcion}
         </p>
 
         {/* Price + Actions */}
-        {/* <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"> */}
-        <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
-          {/* Precio */}
-          <p className="text-xl font-bold text-primary text-center sm:text-left sm:text-2xl">
-            ${precio}
-          </p>
+        <div className="mt-1">
+          {/* Price and Actions */}
+          <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
+            <p className="text-xl sm:text-2xl font-bold text-primary text-center sm:text-left">
+              ${precio}
+            </p>
 
-          {/* Acciones */}
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
-            {/* Quantity */}
-            <div className="mx-auto flex items-center rounded-lg border border-border bg-background sm:mx-0">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+              {/* Quantity selector */}
+              <div className="mx-auto flex items-center rounded-lg border border-border bg-background sm:mx-0">
+                <button
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  className="px-4 py-2 text-lg font-semibold text-muted-foreground hover:text-foreground"
+                >
+                  −
+                </button>
+
+                <span className="min-w-[3rem] text-center text-lg font-semibold">
+                  {quantity}
+                </span>
+
+                <button
+                  onClick={() => setQuantity(quantity + 1)}
+                  className="px-4 py-2 text-lg font-semibold text-muted-foreground hover:text-foreground"
+                >
+                  +
+                </button>
+              </div>
+
+              {/* Add button */}
               <button
-                onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                className="px-4 py-2 text-lg font-semibold text-muted-foreground hover:text-foreground"
+                onClick={handleAddToCart}
+                className="w-full sm:w-auto min-w-[120px] rounded-lg bg-primary px-5 py-2 text-primary-foreground transition-all hover:bg-primary/90 active:scale-95 bottom-0"
               >
-                −
-              </button>
-
-              <span className="min-w-[3rem] text-center text-lg font-semibold">
-                {quantity}
-              </span>
-
-              <button
-                onClick={() => setQuantity(quantity + 1)}
-                className="px-4 py-2 text-lg font-semibold text-muted-foreground hover:text-foreground"
-              >
-                +
+                Agregar
               </button>
             </div>
-
-            {/* Add */}
-            <button
-              onClick={handleAddToCart}
-              className="w-full sm:w-auto min-w-[120px] rounded-lg bg-primary px-5 py-2 text-primary-foreground transition-all hover:bg-primary/90 active:scale-95"
-            >
-              Agregar
-            </button>
           </div>
         </div>
       </div>
