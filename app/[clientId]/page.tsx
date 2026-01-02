@@ -126,12 +126,12 @@ export default function CatalogoPage() {
             </h1>
 
             <div className="flex items-center gap-3">
-              <div className="flex items-center gap-3">
+              {/* <div className="flex items-center gap-3">
                 <div className="hidden sm:flex items-center gap-2 rounded-full border px-4 py-2 text-sm">
                   <User className="h-4 w-4" />
                   <span>{client.nombre}</span>
                 </div>
-              </div>
+              </div> */}
 
               <button
                 onClick={() => setIsCartOpen(true)}
