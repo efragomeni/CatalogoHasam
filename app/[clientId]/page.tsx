@@ -1,109 +1,109 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { ShoppingCart, User, Grid3x3 } from "lucide-react"
-import { useParams } from "next/navigation"
+import { useState, useEffect } from "react";
+import { ShoppingCart, User, Grid3x3 } from "lucide-react";
+import { useParams } from "next/navigation";
 
-import ProductCard from "@/components/product-card"
-import CartDrawer from "@/components/cart-drawer"
-import WhatsAppButton from "@/components/whatsapp-button"
-import CategoryFilter from "@/components/category-filter"
+import ProductCard from "@/components/product-card";
+import CartDrawer from "@/components/cart-drawer";
+import WhatsAppButton from "@/components/whatsapp-button";
+import CategoryFilter from "@/components/category-filter";
 
-import type { Product, Client, CartItem } from "@/types"
+import type { Product, Client, CartItem } from "@/types";
 
 // 👉 Sanity
-import { client as sanityClient } from "@/sanity/lib/client"
-import { productsQuery } from "@/sanity/lib/queries"
+import { client as sanityClient } from "@/sanity/lib/client";
+import { productsQuery } from "@/sanity/lib/queries";
 
 // 👉 Clientes siguen viniendo del JSON (por ahora)
-import clientesData from "@/data/clientes.json"
+import clientesData from "@/data/clientes.json";
 
-const clientes: Client[] = clientesData as Client[]
+const clientes: Client[] = clientesData as Client[];
 
 export default function CatalogoPage() {
-  const params = useParams()
-  const clientId = params.clientId as string
+  const params = useParams();
+  const clientId = params.clientId as string;
 
   // ---------- CLIENTE ----------
   const [client, setClient] = useState<Client>(() => {
-    const foundClient = clientes.find((c) => c.id === clientId)
-    return foundClient || clientes[0]
-  })
+    const foundClient = clientes.find((c) => c.id === clientId);
+    return foundClient || clientes[0];
+  });
 
   useEffect(() => {
-    const foundClient = clientes.find((c) => c.id === clientId)
+    const foundClient = clientes.find((c) => c.id === clientId);
     if (foundClient) {
-      setClient(foundClient)
+      setClient(foundClient);
     }
-  }, [clientId])
+  }, [clientId]);
 
   // ---------- PRODUCTOS (SANITY) ----------
-  const [productos, setProductos] = useState<Product[]>([])
-  const [loading, setLoading] = useState(true)
+  const [productos, setProductos] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchProductos() {
       try {
-        const data = await sanityClient.fetch(productsQuery)
+        const data = await sanityClient.fetch(productsQuery);
 
         // Adaptamos _id → id para que tu app siga igual
         const mappedProducts: Product[] = data.map((p: any) => ({
           ...p,
           id: p._id,
-        }))
+        }));
 
-        setProductos(mappedProducts)
+        setProductos(mappedProducts);
       } catch (error) {
-        console.error("Error fetching products from Sanity:", error)
+        console.error("Error fetching products from Sanity:", error);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     }
 
-    fetchProductos()
-  }, [])
+    fetchProductos();
+  }, []);
 
   // ---------- CARRITO ----------
-  const [cart, setCart] = useState<CartItem[]>([])
-  const [isCartOpen, setIsCartOpen] = useState(false)
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [cart, setCart] = useState<CartItem[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const addToCart = (productId: string, quantity: number) => {
     setCart((prev) => {
-      const existing = prev.find((item) => item.productId === productId)
+      const existing = prev.find((item) => item.productId === productId);
       if (existing) {
         return prev.map((item) =>
           item.productId === productId
             ? { ...item, quantity: item.quantity + quantity }
             : item
-        )
+        );
       }
-      return [...prev, { productId, quantity }]
-    })
-  }
+      return [...prev, { productId, quantity }];
+    });
+  };
 
   const updateQuantity = (productId: string, quantity: number) => {
     if (quantity <= 0) {
-      setCart((prev) => prev.filter((item) => item.productId !== productId))
+      setCart((prev) => prev.filter((item) => item.productId !== productId));
     } else {
       setCart((prev) =>
         prev.map((item) =>
           item.productId === productId ? { ...item, quantity } : item
         )
-      )
+      );
     }
-  }
+  };
 
-  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0)
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   // ---------- FILTROS ----------
   const categories = Array.from(
     new Set(productos.map((p) => p.categoria))
-  ).sort()
+  ).sort();
 
   const filteredProducts = selectedCategory
     ? productos.filter((p) => p.categoria === selectedCategory)
-    : productos
+    : productos;
 
   // ---------- LOADING ----------
   if (loading) {
@@ -111,7 +111,7 @@ export default function CatalogoPage() {
       <div className="flex min-h-screen items-center justify-center">
         <p className="text-muted-foreground">Cargando productos…</p>
       </div>
-    )
+    );
   }
 
   // ---------- RENDER ----------
@@ -126,9 +126,11 @@ export default function CatalogoPage() {
             </h1>
 
             <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2 rounded-full border px-4 py-2 text-sm">
-                <User className="h-4 w-4" />
-                <span className="hidden sm:inline">{client.nombre}</span>
+              <div className="flex items-center gap-3">
+                <div className="hidden sm:flex items-center gap-2 rounded-full border px-4 py-2 text-sm">
+                  <User className="h-4 w-4" />
+                  <span>{client.nombre}</span>
+                </div>
               </div>
 
               <button
@@ -171,7 +173,6 @@ export default function CatalogoPage() {
 
         {/* <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"> */}
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-
           {filteredProducts.map((producto) => (
             <ProductCard
               key={producto.id}
@@ -203,9 +204,8 @@ export default function CatalogoPage() {
 
       <WhatsAppButton cart={cart} products={productos} client={client} />
     </div>
-  )
+  );
 }
-
 
 // "use client"
 
