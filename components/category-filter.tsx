@@ -1,21 +1,30 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { ChevronDown, Grid3x3, X } from "lucide-react"
+import { useState } from "react";
+import { ChevronDown, Grid3x3, X } from "lucide-react";
 
 interface CategoryFilterProps {
-  categories: string[]
-  selectedCategory: string | null
-  onSelectCategory: (category: string | null) => void
+  categories: string[];
+  selectedCategory: string | null;
+  onSelectCategory: (category: string | null) => void;
 }
-
-export default function CategoryFilter({ categories, selectedCategory, onSelectCategory }: CategoryFilterProps) {
-  const [isOpen, setIsOpen] = useState(false)
+const CATEGORY_LABELS: Record<string, string> = {
+  "munecos-3d": "Muñecos 3D",
+  mascotas: "Mascotas",
+  accesorios: "Accesorios",
+  ceramica:"Cerámica"
+};
+export default function CategoryFilter({
+  categories,
+  selectedCategory,
+  onSelectCategory,
+}: CategoryFilterProps) {
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleSelect = (category: string | null) => {
-    onSelectCategory(category)
-    setIsOpen(false)
-  }
+    onSelectCategory(category);
+    setIsOpen(false);
+  };
 
   return (
     <div className="relative">
@@ -26,14 +35,19 @@ export default function CategoryFilter({ categories, selectedCategory, onSelectC
       >
         <Grid3x3 className="h-4 w-4" />
         <span>{selectedCategory || "Todas las categorías"}</span>
-        <ChevronDown className={`h-4 w-4 transition-transform ${isOpen ? "rotate-180" : ""}`} />
+        <ChevronDown
+          className={`h-4 w-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
+        />
       </button>
 
       {/* Dropdown Menu */}
       {isOpen && (
         <>
           {/* Backdrop */}
-          <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />
+          <div
+            className="fixed inset-0 z-40"
+            onClick={() => setIsOpen(false)}
+          />
 
           {/* Menu */}
           <div className="absolute left-0 top-full z-50 mt-2 w-64 rounded-lg border border-border bg-card shadow-lg">
@@ -48,7 +62,9 @@ export default function CategoryFilter({ categories, selectedCategory, onSelectC
                 }`}
               >
                 <span>Todas las categorías</span>
-                {selectedCategory === null && <div className="h-2 w-2 rounded-full bg-primary-foreground" />}
+                {selectedCategory === null && (
+                  <div className="h-2 w-2 rounded-full bg-primary-foreground" />
+                )}
               </button>
 
               {/* Divider */}
@@ -65,8 +81,11 @@ export default function CategoryFilter({ categories, selectedCategory, onSelectC
                       : "text-card-foreground hover:bg-accent hover:text-accent-foreground"
                   }`}
                 >
-                  <span>{category}</span>
-                  {selectedCategory === category && <div className="h-2 w-2 rounded-full bg-primary-foreground" />}
+                  {/* <span>{category}</span> */}
+                  <span>{CATEGORY_LABELS[category] ?? category}</span>
+                  {selectedCategory === category && (
+                    <div className="h-2 w-2 rounded-full bg-primary-foreground" />
+                  )}
                 </button>
               ))}
             </div>
@@ -84,5 +103,5 @@ export default function CategoryFilter({ categories, selectedCategory, onSelectC
         </button>
       )}
     </div>
-  )
+  );
 }

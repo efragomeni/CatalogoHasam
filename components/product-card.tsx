@@ -46,7 +46,7 @@ export default function ProductCard({
         />
 
         <div className="absolute left-3 top-3 rounded-full bg-background/80 px-3 py-1 text-xs font-medium backdrop-blur-sm">
-          {product.categoria}
+          {product.subcategoria}
         </div>
       </div>
 
