@@ -30,6 +30,7 @@ export default defineType({
           { title: "Mascotas", value: "mascotas" },
           { title: "Decoración", value: "decoracion" },
           { title: "Accesorios", value: "accesorios" },
+          { title: "Llaveros", value: "llaveros" },
         ],
       },
     }),

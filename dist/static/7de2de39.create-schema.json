@@ -47,6 +47,10 @@
             {
               "title": "Accesorios",
               "value": "accesorios"
+            },
+            {
+              "title": "Llaveros",
+              "value": "llaveros"
             }
           ]
         },
@@ -61,7 +65,8 @@
                   "topper",
                   "mascotas",
                   "decoracion",
-                  "accesorios"
+                  "accesorios",
+                  "llaveros"
                 ]
               },
               {
