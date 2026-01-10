@@ -22,14 +22,14 @@ const clientTypes = [
     type: "mayorista" as ClientType,
     label: "Mayorista",
     description: "Compras al por mayor",
-    discount: 20,
+    discount: 0,
     icon: Building2,
   },
   {
     type: "distribuidor" as ClientType,
     label: "Distribuidor",
     description: "Distribución comercial",
-    discount: 32,
+    discount: 0,
     icon: Warehouse,
   },
 ]

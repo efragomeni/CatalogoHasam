@@ -18,8 +18,9 @@ export default function ProductCard({
   const [isHovered, setIsHovered] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
-  const precioBase = product.precios[client.tipo];
-  const precio = Math.round(precioBase * (1 - client.descuento / 100));
+  // const precioBase = product.precios[client.tipo];
+  // const precio = Math.round(precioBase * (1 - client.descuento / 100));
+  const precio = product.precios[client.tipo]
 
   const handleAddToCart = () => {
     onAddToCart(product.id, quantity);
