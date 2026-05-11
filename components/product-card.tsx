@@ -11,7 +11,6 @@ interface ProductCardProps {
   onAddToCart: (productId: string, quantity: number) => void;
 }
 
-
 export default function ProductCard({
   product,
   client,
@@ -38,7 +37,7 @@ export default function ProductCard({
         <div className="aspect-square w-full">
           <img
             src={urlFor(
-              isHovered && product.imagen2 ? product.imagen2 : product.imagen1
+              isHovered && product.imagen2 ? product.imagen2 : product.imagen1,
             )
               .width(400)
               .height(400)
@@ -65,7 +64,13 @@ export default function ProductCard({
 
         {/* Description */}
         {product.descripcion && (
-          <p className="mb-3 line-clamp-1 text-xs text-gray-600">
+          <p
+            className={`mb-3 line-clamp-1 text-xs ${
+              product.descripcion.includes("--")
+                ? "text-white"
+                : "text-gray-600"
+            }`}
+          >
             {product.descripcion}
           </p>
         )}
