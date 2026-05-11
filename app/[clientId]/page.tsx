@@ -2,13 +2,12 @@
 // app/[clientId]/page.tsx
 
 import { useState, useEffect } from "react";
-import { ShoppingCart, X } from "lucide-react";
+import { ShoppingCart, Menu, X } from "lucide-react";
 import { useParams } from "next/navigation";
 
 import ProductCard from "@/components/product-card";
 import CartDrawer from "@/components/cart-drawer";
 import WhatsAppButton from "@/components/whatsapp-button";
-import FiltersSidebar from "@/components/filters-sidebar";
 
 import type { Product, Client, CartItem } from "@/types";
 
@@ -19,6 +18,7 @@ const CATEGORY_LABELS: Record<string, string> = {
   ceramica: "Cerámica",
   decoracion: "Decoración",
 };
+
 // 👉 Sanity
 import { client as sanityClient } from "@/sanity/lib/client";
 import { productsQuery } from "@/sanity/lib/queries";
@@ -50,7 +50,11 @@ export default function CatalogoPage() {
     async function fetchProductos() {
       try {
         const data = await sanityClient.fetch(productsQuery);
-        const mapped = data.map((p: any) => ({ ...p, id: p._id }));
+        const mapped = data.map((p: any) => ({
+          ...p,
+          id: p._id,
+        }));
+
         setProductos(mapped);
       } catch (err) {
         console.error(err);
@@ -71,10 +75,12 @@ export default function CatalogoPage() {
   // ---------- CARRITO ----------
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
   const addToCart = (productId: string, quantity: number) => {
     setCart((prev) => {
       const existing = prev.find((i) => i.productId === productId);
+
       if (existing) {
         return prev.map((i) =>
           i.productId === productId
@@ -82,6 +88,7 @@ export default function CatalogoPage() {
             : i,
         );
       }
+
       return [...prev, { productId, quantity }];
     });
   };
@@ -118,21 +125,18 @@ export default function CatalogoPage() {
     if (
       selectedCategories.length > 0 &&
       !selectedCategories.includes(p.categoria)
-    )
+    ) {
       return false;
+    }
+
     if (
       selectedSubcategories.length > 0 &&
       !selectedSubcategories.includes(p.subcategoria)
-    )
+    ) {
       return false;
-    return true;
-  });
+    }
 
-  // ---------- IMÁGENES ----------
-  const categoryImages: Record<string, any> = {};
-  categories.forEach((cat) => {
-    const prod = productos.find((p) => p.categoria === cat && p.imagen1);
-    if (prod) categoryImages[cat] = prod.imagen1;
+    return true;
   });
 
   // ---------- LOADING ----------
@@ -153,6 +157,14 @@ export default function CatalogoPage() {
       <header className="sticky top-0 z-40 border-b border-gray-200 bg-white shadow-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
           <button
+            onClick={() => setIsFiltersOpen(true)}
+            className="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white p-2.5 text-gray-900 transition-all hover:bg-gray-100 md:hidden"
+            aria-label="Abrir filtros"
+          >
+            <Menu className="h-5 w-5" />
+          </button>
+
+          <button
             onClick={() => {
               setSelectedCategories([]);
               setSelectedSubcategories([]);
@@ -167,6 +179,7 @@ export default function CatalogoPage() {
             className="relative rounded-full border border-gray-300 bg-white p-2.5 text-gray-900 transition-all hover:bg-gray-100"
           >
             <ShoppingCart className="h-5 w-5" />
+
             {totalItems > 0 && (
               <span className="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-yellow-400 text-xs font-bold text-gray-900">
                 {totalItems}
@@ -176,15 +189,133 @@ export default function CatalogoPage() {
         </div>
       </header>
 
-      <main className="flex">
-        {/* Fixed Sidebar */}
-        <div className="sticky top-20 h-[calc(100vh-80px)] w-64 overflow-y-auto border-r border-gray-200 bg-white">
+      {/* MOBILE FILTERS */}
+      {isFiltersOpen && (
+        <div className="fixed inset-0 z-50 md:hidden">
+          <div
+            className="absolute inset-0 bg-black/30 backdrop-blur-sm"
+            onClick={() => setIsFiltersOpen(false)}
+          />
+
+          <aside className="relative z-10 flex h-full w-[50%] max-w-sm flex-col bg-white shadow-xl">
+            <div className="flex items-center justify-between border-b border-gray-200 p-4">
+              <h2 className="text-lg font-bold text-gray-900">Filtros</h2>
+
+              <button
+                onClick={() => setIsFiltersOpen(false)}
+                className="rounded-full bg-gray-100 p-2 text-gray-700 hover:bg-gray-200"
+                aria-label="Cerrar filtros"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="overflow-y-auto p-4">
+              <div className="space-y-6">
+                <div>
+                  <h3 className="mb-3 text-sm font-bold text-gray-900">
+                    Categorías
+                  </h3>
+
+                  <div className="space-y-2">
+                    {categories.map((cat) => (
+                      <label
+                        key={cat}
+                        className="flex cursor-pointer items-center gap-2 rounded-md p-2 hover:bg-gray-100"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={selectedCategories.includes(cat)}
+                          onChange={() => {
+                            setSelectedCategories((prev) =>
+                              prev.includes(cat)
+                                ? prev.filter((c) => c !== cat)
+                                : [...prev, cat],
+                            );
+                          }}
+                          className="h-4 w-4 rounded border-gray-300 accent-yellow-400"
+                        />
+
+                        <span className="text-sm text-gray-700">
+                          {CATEGORY_LABELS[cat] ?? cat}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                {selectedCategories.length > 0 && subcategories.length > 0 && (
+                  <div>
+                    <div className="mb-3 flex items-center justify-between">
+                      <h3 className="text-sm font-bold text-gray-900">
+                        Subcategorías
+                      </h3>
+
+                      {selectedSubcategories.length > 0 && (
+                        <button
+                          onClick={() => setSelectedSubcategories([])}
+                          className="rounded-full bg-gray-100 p-1 hover:bg-gray-200"
+                          title="Limpiar"
+                        >
+                          <X className="h-3 w-3 text-gray-600" />
+                        </button>
+                      )}
+                    </div>
+
+                    <div className="space-y-2">
+                      {subcategories.map((sub) => (
+                        <label
+                          key={sub}
+                          className="flex cursor-pointer items-center gap-2 rounded-md p-2 hover:bg-gray-100"
+                        >
+                          <input
+                            type="checkbox"
+                            checked={selectedSubcategories.includes(sub)}
+                            onChange={() => {
+                              setSelectedSubcategories((prev) =>
+                                prev.includes(sub)
+                                  ? prev.filter((s) => s !== sub)
+                                  : [...prev, sub],
+                              );
+                            }}
+                            className="h-4 w-4 rounded border-gray-300 accent-yellow-400"
+                          />
+
+                          <span className="text-sm text-gray-700">{sub}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {hasActiveFilters && (
+                  <button
+                    onClick={() => {
+                      setSelectedCategories([]);
+                      setSelectedSubcategories([]);
+                      setIsFiltersOpen(false);
+                    }}
+                    className="w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-900 transition-all hover:bg-gray-50"
+                  >
+                    Limpiar filtros
+                  </button>
+                )}
+              </div>
+            </div>
+          </aside>
+        </div>
+      )}
+
+      {/* MAIN */}
+      <main className="relative mx-auto flex max-w-7xl flex-col px-4 py-6 md:flex-row">
+        {/* SIDEBAR */}
+        <aside className="hidden overflow-y-auto border-r border-gray-200 bg-white md:sticky md:top-20 md:block md:h-[calc(100vh-80px)] md:w-64 md:flex-shrink-0">
           <div className="space-y-6 p-4">
-            {/* Category Filter */}
             <div>
               <h3 className="mb-3 text-sm font-bold text-gray-900">
                 Categorías
               </h3>
+
               <div className="space-y-2">
                 {categories.map((cat) => (
                   <label
@@ -203,6 +334,7 @@ export default function CatalogoPage() {
                       }
                       className="h-4 w-4 rounded border-gray-300 accent-yellow-400"
                     />
+
                     <span className="text-sm text-gray-700">
                       {CATEGORY_LABELS[cat] ?? cat}
                     </span>
@@ -211,13 +343,13 @@ export default function CatalogoPage() {
               </div>
             </div>
 
-            {/* Subcategory Filter */}
             {selectedCategories.length > 0 && subcategories.length > 0 && (
               <div>
                 <div className="mb-3 flex items-center justify-between">
                   <h3 className="text-sm font-bold text-gray-900">
                     Subcategorías
                   </h3>
+
                   {selectedSubcategories.length > 0 && (
                     <button
                       onClick={() => setSelectedSubcategories([])}
@@ -228,6 +360,7 @@ export default function CatalogoPage() {
                     </button>
                   )}
                 </div>
+
                 <div className="space-y-2">
                   {subcategories.map((sub) => (
                     <label
@@ -246,6 +379,7 @@ export default function CatalogoPage() {
                         }
                         className="h-4 w-4 rounded border-gray-300 accent-yellow-400"
                       />
+
                       <span className="text-sm text-gray-700">{sub}</span>
                     </label>
                   ))}
@@ -253,7 +387,6 @@ export default function CatalogoPage() {
               </div>
             )}
 
-            {/* Clear Filters */}
             {hasActiveFilters && (
               <button
                 onClick={() => {
@@ -266,11 +399,10 @@ export default function CatalogoPage() {
               </button>
             )}
           </div>
-        </div>
+        </aside>
 
-        {/* Products Grid */}
+        {/* PRODUCTS */}
         <div className="flex-1 px-4 py-6">
-          {/* Results Counter */}
           {hasActiveFilters && (
             <div className="mb-6 text-sm text-gray-600">
               Se encontraron{" "}
@@ -288,7 +420,8 @@ export default function CatalogoPage() {
               </div>
             </div>
           ) : (
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+            {/* <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"> */}
               {filteredProducts.map((p) => (
                 <ProductCard
                   key={p.id}
