@@ -12,7 +12,7 @@ interface CartDrawerProps {
   cart: CartItem[];
   products: Product[];
   client: Client;
-  onUpdateQuantity: (productId: number, quantity: number) => void;
+  onUpdateQuantity: (productId: string, quantity: number) => void;
 }
 
 export default function CartDrawer({

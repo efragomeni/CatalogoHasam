@@ -1,6 +1,7 @@
 export const productsQuery = `
-*[_type == "product"]{
+*[_type == "product"] | order(_createdAt desc){
   _id,
+  _createdAt,
   nombre,
   descripcion,
   categoria,

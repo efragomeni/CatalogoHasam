@@ -8,7 +8,7 @@ export interface Client {
 }
 
 export interface Product {
-  id: number;
+  id: string;
   nombre: string;
   descripcion: string;
   imagen1: string;
@@ -23,6 +23,6 @@ export interface Product {
 }
 
 export interface CartItem {
-  productId: number;
+  productId: string;
   quantity: number;
 }

@@ -12,7 +12,8 @@ const CATEGORY_LABELS: Record<string, string> = {
   "munecos-3d": "Muñecos 3D",
   mascotas: "Mascotas",
   accesorios: "Accesorios",
-  ceramica:"Cerámica"
+  ceramica: "Cerámica",
+  decoracion: "Decoración",
 };
 export default function CategoryFilter({
   categories,

@@ -8,6 +8,7 @@ const CATEGORY_LABELS: Record<string, string> = {
   accesorios: "Accesorios",
   ceramica: "Cerámica",
   llaveros: "Llaveros",
+  decoracion: "Decoración",
 };
 
 interface CategoryCardsProps {

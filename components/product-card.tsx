@@ -1,14 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import { Plus, Minus } from "lucide-react";
 import type { Product, Client } from "@/types";
 import { urlFor } from "@/sanity/lib/image";
 
 interface ProductCardProps {
   product: Product;
   client: Client;
-  onAddToCart: (productId: number, quantity: number) => void;
+  onAddToCart: (productId: string, quantity: number) => void;
 }
+
 
 export default function ProductCard({
   product,
@@ -18,9 +20,7 @@ export default function ProductCard({
   const [isHovered, setIsHovered] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
-  // const precioBase = product.precios[client.tipo];
-  // const precio = Math.round(precioBase * (1 - client.descuento / 100));
-  const precio = product.precios[client.tipo]
+  const precio = product.precios[client.tipo];
 
   const handleAddToCart = () => {
     onAddToCart(product.id, quantity);
@@ -29,82 +29,78 @@ export default function ProductCard({
 
   return (
     <div
-      className="group relative overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:shadow-lg"
+      className="flex flex-col overflow-hidden rounded-lg border border-border bg-white shadow-sm transition-all duration-200 hover:shadow-xl"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Image */}
-      <div className="relative aspect-4/5 sm:aspect-square overflow-hidden">
-        <img
-          src={urlFor(
-            isHovered && product.imagen2 ? product.imagen2 : product.imagen1
-          )
-            .width(400)
-            .height(400)
-            .url()}
-          alt={product.nombre}
-          className="h-full w-full object-cover transition-all duration-500 group-hover:scale-105"
-        />
-
-        <div className="absolute left-3 top-3 rounded-full bg-background/80 px-3 py-1 text-xs font-medium backdrop-blur-sm">
-          {product.subcategoria}
+      {/* Image Container */}
+      <div className="relative w-full overflow-hidden bg-gray-100">
+        <div className="aspect-square w-full">
+          <img
+            src={urlFor(
+              isHovered && product.imagen2 ? product.imagen2 : product.imagen1
+            )
+              .width(400)
+              .height(400)
+              .url()}
+            alt={product.nombre}
+            className="h-full w-full object-cover transition-all duration-300"
+          />
         </div>
       </div>
 
       {/* Content */}
-      {/* <div className="p-5"> */}
-      <div className="flex h-full flex-col p-5">
-        {/* <h3 className="mb-1 text-base font-semibold text-center sm:text-left sm:text-lg"> */}
-        <h3 className="mb-1 text-base font-semibold text-center sm:text-left sm:text-lg line-clamp-2 min-h-[3rem]">
+      <div className="flex flex-grow flex-col p-4">
+        {/* Subcategory Badge */}
+        {product.subcategoria && (
+          <div className="mb-2 text-xs text-gray-500">
+            {product.subcategoria}
+          </div>
+        )}
+
+        {/* Product Name */}
+        <h3 className="mb-2 line-clamp-2 text-sm font-medium leading-tight text-gray-800">
           {product.nombre}
         </h3>
 
-        {/* <p className="mb-4 text-sm text-muted-foreground text-center sm:text-left sm:text-base">
-          {product.descripcion}
-        </p> */}
-        <p className="mb-4 text-sm text-muted-foreground text-center sm:text-left sm:text-lg line-clamp-2 min-h-[1.5rem]">
-          {product.descripcion}
-        </p>
+        {/* Description */}
+        {product.descripcion && (
+          <p className="mb-3 line-clamp-1 text-xs text-gray-600">
+            {product.descripcion}
+          </p>
+        )}
 
-        {/* Price + Actions */}
-        <div className="mt-1">
-          {/* Price and Actions */}
-          <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
-            <p className="text-xl sm:text-2xl font-bold text-primary text-center sm:text-left">
-              ${precio}
-            </p>
+        {/* Price */}
+        <div className="mb-4">
+          <p className="text-xl font-bold text-gray-900">${precio}</p>
+        </div>
 
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-              {/* Quantity selector */}
-              <div className="mx-auto flex items-center rounded-lg border border-border bg-background sm:mx-0">
-                <button
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="px-4 py-2 text-lg font-semibold text-muted-foreground hover:text-foreground"
-                >
-                  −
-                </button>
-
-                <span className="min-w-[3rem] text-center text-lg font-semibold">
-                  {quantity}
-                </span>
-
-                <button
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="px-4 py-2 text-lg font-semibold text-muted-foreground hover:text-foreground"
-                >
-                  +
-                </button>
-              </div>
-
-              {/* Add button */}
-              <button
-                onClick={handleAddToCart}
-                className="w-full sm:w-auto min-w-[120px] rounded-lg bg-primary px-5 py-2 text-primary-foreground transition-all hover:bg-primary/90 active:scale-95 bottom-0"
-              >
-                Agregar
-              </button>
-            </div>
+        {/* Quantity Selector + Add Button */}
+        <div className="mt-auto space-y-2">
+          <div className="flex items-center gap-2 rounded-lg border border-gray-300 bg-gray-50">
+            <button
+              onClick={() => setQuantity(Math.max(1, quantity - 1))}
+              className="flex-1 px-2 py-1.5 text-gray-600 transition-colors hover:bg-gray-200"
+            >
+              <Minus className="h-4 w-4" />
+            </button>
+            <span className="flex-1 text-center text-sm font-semibold text-gray-900">
+              {quantity}
+            </span>
+            <button
+              onClick={() => setQuantity(quantity + 1)}
+              className="flex-1 px-2 py-1.5 text-gray-600 transition-colors hover:bg-gray-200"
+            >
+              <Plus className="h-4 w-4" />
+            </button>
           </div>
+
+          <button
+            onClick={handleAddToCart}
+            className="w-full rounded-md bg-yellow-400 px-4 py-2.5 text-sm font-bold text-gray-900 transition-all hover:bg-yellow-500 active:scale-95"
+          >
+            Agregar al carrito
+          </button>
         </div>
       </div>
     </div>
